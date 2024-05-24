@@ -86,3 +86,41 @@ function logout(){
   window.localStorage.clear();
   window.open("login.html","_self");
 }
+async function fetchAndPopulateSelect() {
+  try {
+    const selectElement = document.getElementById('mySelect');
+    console.log('Fetching data from API...');
+    
+    // URL ของ API ที่จะใช้ fetch
+    const apiUrl = 'http://127.0.0.1:5000/api/lots'; // เปลี่ยน URL นี้เป็น URL จริงของ API
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    console.log('Data received:', data);
+
+    // ตรวจสอบโครงสร้างข้อมูลที่ได้มา
+    if (Array.isArray(data)) {
+      data.forEach(item => {
+        if (item.name && item.id) { // ตรวจสอบว่าออบเจ็กต์มี name และ id
+          console.log('Adding option:', item);
+          // สร้าง option element
+          const option = document.createElement('option');
+          option.value = item.id; // ตั้งค่า value เป็น id
+          option.textContent = item.name; // ตั้งค่า text เป็น name
+
+          // เพิ่ม option ไปยัง select element
+          selectElement.appendChild(option);
+        }
+      });
+    } else {
+      console.error('รูปแบบข้อมูลไม่ถูกต้อง:', data);
+    }
+
+    // Add an event listener to handle selection changes
+    selectElement.addEventListener('change', function () {
+      console.log('Selected value:', this.value);
+    });
+  } catch (error) {
+    console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
+  }
+}
