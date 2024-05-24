@@ -11,11 +11,15 @@ const file = window.localStorage.getItem("filename");
 console.log(file);
 const numstr = window.localStorage.getItem("num");
 const percent = window.localStorage.getItem("percent");
+const id_lots = window.localStorage.getItem("id_lots");
+const lot = window.localStorage.getItem("lots")
+console.log("lots = "+lot)
 let num = [];
 let sum = 0;
 num = JSON.parse(numstr);
 console.log(num[1]);
 console.log("sss");
+
 document.getElementById("BreakClean").innerHTML = "เมล็ดแตกสะอาด: " + num[0];
 document.getElementById("CompleteSeeds").innerHTML = "เมล็ดสมบูรณ์: " + num[1];
 document.getElementById("Dust").innerHTML = "ฝุ่นซังแตกหยิม: " + num[2];
@@ -27,6 +31,8 @@ document.getElementById("fullbrokenseeds").innerHTML =
 document.getElementById("percent").innerHTML = "percent : " + percent;
 for (let i = 0; i <= 5; i++) {
   sum += num[i];
+
+  document.getElementById("lotValue").innerHTML = lot;
 }
 document.getElementById("sum").innerHTML = "sum = " + sum;
 function fetchImage() {

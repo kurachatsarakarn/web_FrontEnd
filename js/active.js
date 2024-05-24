@@ -9,6 +9,7 @@ window.onload = function () {
   const video = document.getElementById("video");
   const canvas = document.getElementById("canvas");
   const context = canvas.getContext("2d");
+  fetchAndPopulateSelect();
   socket = io.connect("http://127.0.0.1:5000");
   navigator.mediaDevices
     .getUserMedia({ video: true })
@@ -47,6 +48,8 @@ window.onload = function () {
       document.getElementById("percent").textContent = "percent : "+ data.percent + "%"
       var sum = data.num.reduce((total, current) => total + current, 0);
       document.getElementById("sum").textContent = "sum: " + sum;
+
+    
     });
   }
 };
@@ -75,6 +78,11 @@ function sendFrame_pic() {
       window.localStorage.setItem("num", JSON.stringify(data.num));
       window.localStorage.setItem("percent",data.percent)
       console.log(data.percent)
+      // op =document.getElementById("option");
+      // if(op)
+      //   {
+      //     window.localStorage.setItem("id_lots",op.value);
+      //   }
       window.open("pic.html", "_blank");
     })
     .catch((error) => {
@@ -118,7 +126,10 @@ async function fetchAndPopulateSelect() {
 
     // Add an event listener to handle selection changes
     selectElement.addEventListener('change', function () {
-      console.log('Selected value:', this.value);
+      lots = this.options[this.selectedIndex].textContent;
+      console.log('Selected value:',lots);
+      window.localStorage.setItem("lots",lots);
+      window.localStorage.setItem("id_lots",this.value);
     });
   } catch (error) {
     console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);

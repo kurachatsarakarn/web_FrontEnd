@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socket.IO OpenCV</title>
+  </head>
+  <body>
+    <h1>Socket.IO OpenCV</h1>
+    <video id="video" width="640" height="480" autoplay></video>
+    <canvas id="canvas" width="640" height="480"></canvas>
+    <div class="vdo">
+      <img id="pic" />
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
+    <script>
+      const video = document.getElementById("video");
+      const canvas = document.getElementById("canvas");
+      const context = canvas.getContext("2d");
+      var socket = io.connect("http://127.0.0.1:5000");
+      navigator.mediaDevices
+        .getUserMedia({ video: true })
+        .then((stream) => {
+          video.srcObject = stream;
+          video.play();
+          setInterval(sendFrame,250);
+        })
+        .catch((err) => {
+          console.error("Error accessing the camera: " + err);
+        });
+
+      function sendFrame() {
+        console.log("ssss")
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const imageData = canvas.toDataURL("image/jpeg");
+        socket.emit("frame", imageData);
+        socket.on("response", function (data) {
+          // ทำอะไรกับข้อมูลที่ถูกประมวลผลแล้ว เช่น แสดงภาพบนอิลิเมนต์ <img>
+          document.getElementById("pic").src =
+            "data:image/jpeg;base64," +
+            btoa(String.fromCharCode.apply(null, new Uint8Array(data.frame)));
+        });
+      }
+    </script>
+  </body>
+</html>

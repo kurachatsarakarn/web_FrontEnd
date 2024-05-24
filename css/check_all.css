@@ -1,0 +1,141 @@
+body{
+    margin: 0 auto;
+    font-family: sans-serif;
+    background-color: rgb(255, 255, 255);
+}
+
+.header{
+    background-color: #0064c2;
+}
+
+.nav-link:hover {
+    background-color: #ffffff; /* เปลี่ยนสีข้อความเมื่อ hover */
+    color:#0064c2
+  }
+  
+
+.nav{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.nav a{
+    color: white;
+}
+
+
+.icon{
+    width: 60px;
+    height: 60px;
+    padding-left: 5px;
+}
+
+.namecom{
+    padding-left: 10px;
+    color: white;
+}
+
+
+.icon{
+    width: 60px;
+    height: 60px;
+    padding-left: 5px;
+}
+
+.namecom{
+    padding-left: 10px;
+    color: white;
+}
+
+
+.text-dep{
+    width: 650px;   
+    height: 80px;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 15px;
+    border-radius: 10px;
+    color: white;
+    background-color: #0064c2;
+    margin-left: 45px;
+}
+
+.graph{
+    width: 650px;
+    height: 430px;
+    background-color: #D9D9D9;
+    margin-left: 45px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+
+.btn{
+    width: 650px;
+    height: 70px;
+    margin-left: 34px;
+    margin-bottom: 10px;
+}
+
+.text-dep2{
+    width: 800px;   
+    height: 70px;
+    font-size: 30px;
+    text-align: center;
+    padding-top: 15px;
+    border-radius: 10px;
+    color: white;
+    background-color: #0064c2;
+    margin-top: 10px;
+}
+
+
+
+
+
+
+
+.webcam{
+    width: 800px;
+    height: 600px;
+    margin-left: -150px;
+    margin-top: 50px;
+}
+
+
+.box-1 {
+    width: 800px;
+    height: 600px;
+    background-color: #545454;
+    border-radius: 10px;
+}
+
+.carousel{
+    width: 800px;
+    height: 600px;
+    border-radius: 10px;
+}
+
+.box-1 p{
+    font-size: 20px;
+    font-weight: bold;
+    float: left;
+    color: white;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+
+.row{
+    width: 700px;
+    margin-top: -600px;
+    margin-left: 800px;
+}
+
+
+
+
+
+
+
