@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f0f2f5;
+      }
+      .login-container {
+        width: 300px;
+        padding: 20px;
+        background: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        text-align: center;
+      }
+      .login-container h1 {
+        margin-bottom: 20px;
+        font-size: 24px;
+      }
+      .login-container input {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .login-container button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        background: #007bff;
+        color: #fff;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .login-container button:hover {
+        background: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <h1>Login</h1>
+      <input
+        type="text"
+        name="username"
+        placeholder="Username"
+        id="username"
+        required
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        id="password"
+        required
+      />
+      <button type="submit" onclick="login()">Login</button>
+    </div>
+  </body>
+  <script>
+    function login() {
+      const dataToSend = {
+        username: document.getElementById("username").value,
+        password: document.getElementById("password").value,
+      };
+      fetch("http://127.0.0.1:5000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataToSend),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data.user);
+          window.localStorage.setItem("user",data.user)
+          window.open("index.html","_self")
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  </script>
+</html>

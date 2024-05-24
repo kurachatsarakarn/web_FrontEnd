@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Images</title>
+  </head>
+  <body>
+    <div id="images-container"></div>
+    <script>
+      window.onload = function(){
+        auth = window.localStorage.getItem('user');
+        console.log("auth= "+auth);
+        if(!auth){
+          window.open('login.html','_self');
+          console.log("ssss");
+        }
+      }
+      // สร้าง function เพื่อโหลดข้อมูลและแสดงรูปภาพ
+      function loadfile() {
+        fetch("http://127.0.0.1:5000/api/cornai") // ทำการร้องขอข้อมูล JSON จาก URL '/download'
+          .then((response) => response.json()) // แปลงข้อมูลที่ได้รับเป็น JSON
+          .then((data) => {
+            // วนลูปผ่านข้อมูลของรูปภาพและสร้าง element <img> เพื่อแสดงรูปภาพ
+            data.forEach((row) => {
+              console.log(row.picture);
+              loadImages(row.picture);
+            });
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      function loadImages(file) {
+        const url = `http://127.0.0.1:5000/image?filename=${file}`;
+
+        fetch(url)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.blob();
+          })
+          .then((blob) => {
+            const objectURL = URL.createObjectURL(blob);
+            const img = document.createElement("img");
+            img.src = objectURL;
+            document.getElementById("images-container").appendChild(img);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+      // เรียกใช้งานฟังก์ชันเมื่อเว็บไซต์โหลดเสร็จ
+      loadfile();
+    </script>
+  </body>
+</html>
