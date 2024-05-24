@@ -6,6 +6,7 @@ window.onload = function () {
     window.open("login.html", "_self");
     console.log("ssss");
   }
+  fetchAndPopulateSelect();
   const video = document.getElementById("video");
   const canvas = document.getElementById("canvas");
   const context = canvas.getContext("2d");
@@ -74,7 +75,10 @@ function sendFrame_pic() {
       window.localStorage.setItem("filename", data.filename);
       window.localStorage.setItem("num", JSON.stringify(data.num));
       window.localStorage.setItem("percent",data.percent)
-      console.log(data.percent)
+      const optionElement = document.getElementById("option");
+      if (optionElement) {
+        window.localStorage.setItem("id_lots",optionElement.value);  // Adjust this line as per your requirement
+      }
       window.open("pic.html", "_blank");
     })
     .catch((error) => {
@@ -86,6 +90,7 @@ function logout(){
   window.localStorage.clear();
   window.open("login.html","_self");
 }
+
 async function fetchAndPopulateSelect() {
   try {
     const selectElement = document.getElementById('mySelect');
@@ -119,6 +124,7 @@ async function fetchAndPopulateSelect() {
     // Add an event listener to handle selection changes
     selectElement.addEventListener('change', function () {
       console.log('Selected value:', this.value);
+      window.localStorage.setItem("id_lots",this.value);
     });
   } catch (error) {
     console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);

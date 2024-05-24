@@ -11,6 +11,8 @@ const file = window.localStorage.getItem("filename");
 console.log(file);
 const numstr = window.localStorage.getItem("num");
 const percent = window.localStorage.getItem("percent");
+const id_lots = window.localStorage.getItem("id_lots");
+console.log("id_lot=",id_lots);
 let num = [];
 let sum = 0;
 num = JSON.parse(numstr);
@@ -77,7 +79,7 @@ function save_capture() {
   console.log(num[0])
   console.log(user)
   const dataToSend = {
-    id: "4",
+    id: id_lots,
     user: user,
     BreakClean: num[0],
     CompleteSeeds: num[1],
