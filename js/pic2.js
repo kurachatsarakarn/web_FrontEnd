@@ -83,7 +83,7 @@ function save_capture() {
   console.log(num[0])
   console.log(user)
   const dataToSend = {
-    id: "4",
+    id: id_lots,
     user: user,
     BreakClean: num[0],
     CompleteSeeds: num[1],

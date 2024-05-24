@@ -6,6 +6,7 @@ window.onload = function () {
     window.open("login.html", "_self");
     console.log("ssss");
   }
+  fetchAndPopulateSelect();
   const video = document.getElementById("video");
   const canvas = document.getElementById("canvas");
   const context = canvas.getContext("2d");
@@ -94,6 +95,7 @@ function logout(){
   window.localStorage.clear();
   window.open("login.html","_self");
 }
+
 async function fetchAndPopulateSelect() {
   try {
     const selectElement = document.getElementById('mySelect');
