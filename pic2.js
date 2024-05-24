@@ -10,7 +10,7 @@ window.onload = function () {
 const file = window.localStorage.getItem("filename");
 console.log(file);
 const numstr = window.localStorage.getItem("num");
-const percent = window.localStorage.getItem("percent")
+const percent = window.localStorage.getItem("percent");
 let num = [];
 let sum = 0;
 num = JSON.parse(numstr);
@@ -24,8 +24,8 @@ document.getElementById("MoldSpores").innerHTML =
 document.getElementById("broken").innerHTML = "เมล็ดเสียปกติ: " + num[4];
 document.getElementById("fullbrokenseeds").innerHTML =
   "เมล็ดเสียเต็มเมล็ด: " + num[5];
-document.getElementById("percent").innerHTML = "percent : "+ percent
-  for (let i = 0; i <= 5; i++) {
+document.getElementById("percent").innerHTML = "percent : " + percent;
+for (let i = 0; i <= 5; i++) {
   sum += num[i];
 }
 document.getElementById("sum").innerHTML = "sum = " + sum;
@@ -55,6 +55,39 @@ function delete_capture() {
     filename: file,
   };
   fetch("http://127.0.0.1:5000/delete_capture", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(dataToSend),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Success:", data);
+      window.close();
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
+function save_capture() {
+  user = window.localStorage.getItem("user");
+  console.log(file)
+  console.log(num[0])
+  console.log(user)
+  const dataToSend = {
+    id: "4",
+    user: user,
+    BreakClean: num[0],
+    CompleteSeeds: num[1],
+    Dust: num[2],
+    MoldSpores: num[3],
+    broken: num[4],
+    fullbrokenseeds: num[5],
+    path: file,
+  };
+  fetch("http://127.0.0.1:5000/api/products", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

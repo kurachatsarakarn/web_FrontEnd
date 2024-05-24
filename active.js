@@ -15,7 +15,7 @@ window.onload = function () {
     .then((stream) => {
       video.srcObject = stream;
       video.play();
-      setInterval(sendFrame, 200);
+      setInterval(sendFrame, 350);
     })
     .catch((err) => {
       console.error("Error accessing the camera: " + err);
