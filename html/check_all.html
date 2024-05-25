@@ -13,10 +13,21 @@
   <link rel="stylesheet" href="/css/check_all.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="/js/active.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    #myPieChart {
+      max-width: 600px;
+      max-height: 600px;
+    }
+  </style>
+  <!-- <script src="/js/active.js"></script> -->
+  <script src="/js/checkonelot.js"></script>
 </head>
 
 <body>
+  <script>
+    console.log(window.localStorage.getItem('id_lotspage'))
+    </script>
   <div class="header">
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
       <a href="/" onclick="window.location.href = './index.html'; return false;"
@@ -44,12 +55,6 @@
               <img src="/img/BlackFungusFull2.png" class="carousel" alt="...">
               </a>
             </div>
-            <div class="carousel-item">
-              <img src="/img/BrokenHoney2.png" class="carousel" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="/img/frame_2024-05-18_16-48-14.jpg" class="carousel" alt="...">
-            </div>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -60,7 +65,7 @@
             <span class="visually-hidden">Next</span>
           </button>
           <div class="text-dep2">
-            <p1>******************</p1><br>
+            <p1>Lot <span id="idLotsValue"></p1><br>
           </div>
       </div>
       <div class="row">
@@ -69,11 +74,61 @@
         </div>
 
         <div class="graph">
-        <P>กราฟฟฟฟฟฟฟฟ</P>
+      <canvas id="myPieChart"></canvas>
+          <script>
+            const ctx = document.getElementById("myPieChart").getContext("2d");
+            const myPieChart = new Chart(ctx, {
+              type: "pie",
+              data: {
+                labels: ["แดง", "น้ำเงิน", "เหลือง", "เขียว", "ม่วง"],
+                datasets: [
+                  {
+                    label: "My Pie Chart",
+                    data: [10, 20, 30, 25, 15],
+                    backgroundColor: [
+                      "rgba(255, 99, 132, 0.6)",
+                      "rgba(54, 162, 235, 0.6)",
+                      "rgba(255, 206, 86, 0.6)",
+                      "rgba(75, 192, 192, 0.6)",
+                      "rgba(153, 102, 255, 0.6)",
+                    ],
+                    borderColor: [
+                      "rgba(255, 99, 132, 1)",
+                      "rgba(54, 162, 235, 1)",
+                      "rgba(255, 206, 86, 1)",
+                      "rgba(75, 192, 192, 1)",
+                      "rgba(153, 102, 255, 1)",
+                    ],
+                    borderWidth: 1,
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                plugins: {
+                  legend: {
+                    position: "top",
+                  },
+                  tooltip: {
+                    callbacks: {
+                      label: function (context) {
+                        let label = context.label || "";
+                        if (label) {
+                          label += ": ";
+                        }
+                        label += context.raw;
+                        return label;
+                      },
+                    },
+                  },
+                },
+              },
+            });
+          </script>
         </div>
         <div class="col-button mb-1">
-          <button type="button" id="fas fa-camera" class="btn btn-success" onclick="window.close()">อนุมัติ</button>
-          <button type="button" id="fas fa-camera" class="btn btn-danger" onclick="window.close()">ยกเลิก</button>
+          <button type="button" id="fas fa-camera" class="btn btn-success" onclick="window.close()">ยอมรับ</button>
+          <button type="button" id="fas fa-camera" class="btn btn-danger" onclick="window.close()">ปฏิเสธ</button>
         </div>
         
 
