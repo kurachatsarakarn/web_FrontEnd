@@ -10,7 +10,6 @@ window.onload = function () {
   const video = document.getElementById("video");
   const canvas = document.getElementById("canvas");
   const context = canvas.getContext("2d");
-  fetchAndPopulateSelect();
   socket = io.connect("http://127.0.0.1:5000");
   navigator.mediaDevices
     .getUserMedia({ video: true })

@@ -137,18 +137,11 @@
     </div>
 
     <nav aria-label="...">
-      <ul class="pagination">
+      <ul class="pagination" id="pagination-container">
         <li class="page-item disabled">
           <span class="page-link">Previous</span>
         </li>
-        <!-- ลูปเพื่อสร้างรายการหน้า -->
-        <?php for ($i = 1; $i <= 5; $i++) { ?>
-
-          <li class="page-item <?php echo ($i == $current_page) ? 'active' : ''; ?>">
-            <a class="page-link" href="#"><?php echo $i; ?></a>
-          </li>
-        <?php } ?>
-        <!-- จบลูป -->
+        <!-- Pagination items will be inserted here by JavaScript -->
         <li class="page-item">
           <a class="page-link" href="#">Next</a>
         </li>
@@ -162,7 +155,7 @@
       <span class="text">Copyright &copy; 2024 บริษัท กรุงไทยอาหาร จำกัด (มหาชน).</span>
     </div>
   </footer>
-
+  <script src="/js/lots.js"></script>
 </body>
 
 </html>
