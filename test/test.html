@@ -18,13 +18,17 @@
       }
       // สร้าง function เพื่อโหลดข้อมูลและแสดงรูปภาพ
       function loadfile() {
-        fetch("http://127.0.0.1:5000/api/cornai") // ทำการร้องขอข้อมูล JSON จาก URL '/download'
+        fetch("http://127.0.0.1:5000/api/lots/1") // ทำการร้องขอข้อมูล JSON จาก URL '/download'
           .then((response) => response.json()) // แปลงข้อมูลที่ได้รับเป็น JSON
           .then((data) => {
             // วนลูปผ่านข้อมูลของรูปภาพและสร้าง element <img> เพื่อแสดงรูปภาพ
             data.forEach((row) => {
-              console.log(row.picture);
-              loadImages(row.picture);
+              console.log(row.path);
+              objectURL = loadImages(row.path);
+              console.log(objectURL)
+              // const img = document.createElement("img");
+              // img.src = objectURL;
+              // document.getElementById("images-container").appendChild(img);
             });
           })
           .catch((error) => console.error("Error:", error));
@@ -42,9 +46,9 @@
           })
           .then((blob) => {
             const objectURL = URL.createObjectURL(blob);
-            const img = document.createElement("img");
-            img.src = objectURL;
-            document.getElementById("images-container").appendChild(img);
+            console.log("ob= "+objectURL)
+            return blob;
+           
           })
           .catch((error) => {
             console.error("Error:", error);
