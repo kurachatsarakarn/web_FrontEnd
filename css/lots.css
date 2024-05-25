@@ -55,12 +55,54 @@ body{
     font-size: 15px;
 }
 .card h5{
-    font-size: 25px;
+    font-size: 20px;
 }
 
+.card h5{
+    font-size: 20px;
+}   
 
+.yellow{
+    background-color: orange; 
+    color: white;
+    border-radius: 5px;
+    font-size: 1em;
+    padding: 5px 10px;
+}
+.green{
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+    font-size: 1em;
+    padding: 5px 10px;
+}
+.red{
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    font-size: 1em;
+    padding: 5px 10px;
+}
 
+.btn{
+    margin-top: 55px;
+}
 
+.searchButton {
+    width: 40px;
+    height: 38px;
+    border-radius: 5px;
+    color: #007bff;
+    background-color: transparent;
+    background-image: none;
+    border-color: #007bff;
+  }
+  
+  .searchButton:hover {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+  }  
 
 
 
