@@ -52,12 +52,15 @@
 
     <nav aria-label="...">
       <ul class="pagination" id="pagination-container">
-        <li class="page-item disabled">
-          <span class="page-link">Previous</span>
-        </li>
-        <!-- Pagination items will be inserted here by JavaScript -->
         <li class="page-item">
-          <a class="page-link" href="#">Next</a>
+          <a class="page-link" id="previous" href="#">Previous</a>
+        </li>
+        <div id="page-container">
+          <input type="text" id="page" onkeydown="handleKeyPress(event)">
+          <span id="total-pages"></span>
+        </div>
+        <li class="page-item">
+          <a class="page-link" id="next" href="#">Next</a>
         </li>
       </ul>
     </nav>
@@ -70,6 +73,7 @@
     </div>
   </footer>
   <script src="/js/lots.js"></script>
+  <script src="/js/lotpage.js"></script>
 </body>
 
 </html>

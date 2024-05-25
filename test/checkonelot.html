@@ -1,0 +1,51 @@
+<div class="box-1 g-2 mt-4">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <a href="check_lots.html">
+                    <img id="carouselImage" class="carousel" alt="...">
+                </a>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+        <div class="text-dep2">
+            <p1 id="carouselData"></p1><br>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Fetch data from the API
+    fetch('http://127.0.0.1:5000/api/lotId/5')
+        .then(response => response.json())
+        .then(data => {
+            // Extract data from the API response
+            const { BreakClean, CompleteSeeds, Dust, MoldSpores, broken, date, fullbrokenseeds, id, id_lots, id_user, name, path } = data[0];
+
+            // Set the image source
+            document.getElementById('carouselImage').src = path;
+
+            // Display data in the paragraph
+            document.getElementById('carouselData').innerText = `
+                Break Clean: ${BreakClean},
+                Complete Seeds: ${CompleteSeeds},
+                Dust: ${Dust},
+                Mold Spores: ${MoldSpores},
+                Broken: ${broken},
+                Date: ${date},
+                Full Broken Seeds: ${fullbrokenseeds},
+                ID: ${id},
+                ID Lots: ${id_lots},
+                ID User: ${id_user},
+                Name: ${name}
+            `;
+        })
+        .catch(error => console.error('Error fetching data:', error));
+</script>
