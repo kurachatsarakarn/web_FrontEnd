@@ -12,6 +12,7 @@
   <!-- Your custom CSS -->
   <link rel="stylesheet" href="/css/lots.css">
   <script src="/js/active.js"></script>
+  <script src="/js/lotpage.js"></script>
 </head>
 
 <body>
@@ -24,7 +25,7 @@
 
       <ul class="nav nav-pills">
         <li class="nav-item"><a href="/html/index.html" class="nav-link">หน้าหลัก</a></li>
-        <li class="nav-item"><a href="/html/lot.php" class="nav-link">เช็คล็อต</a></li>
+        <li class="nav-item"><a href="/html/lot.html" class="nav-link">เช็คล็อต</a></li>
         <li class="nav-item"><a href="/html/createlot.html" class="nav-link">สร้างล็อต</a></li>
         <li class="nav-item"><a href="#" class="nav-link" onclick="logout()">logout</a></li>
       </ul>
@@ -33,7 +34,7 @@
 
   <section class="container">
 
-    <div class="input-group">
+    <div class="input-group mb-5">
       <input id="searchInput" type="search" class="form-control" placeholder="Search..." aria-label="Search">
       <div class="input-group-append">
         <button id="searchButton" class="btn btn-outline-primary" type="button">
@@ -42,99 +43,12 @@
       </div>
     </div>
 
-    <div class="row mt-5 ">
-      <div class="col-sm-3">
-        <div class="card">
-          <img src="/img/frame_2024-05-18_16-48-14.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">สถานะ : โสด</h5>
-            <h5 class="card-second">ชื่อ : ล๋อตเตอรี่</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="/html/check_all.html" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <img src="/img/frame_2024-05-18_16-48-14.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">สถานะ : โสด</h5>
-            <h5 class="card-second">ชื่อ : ล๋อตเตอรี่</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <img src="/img/frame_2024-05-18_16-48-14.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">สถานะ : โสด</h5>
-            <h5 class="card-second">ชื่อ : ล๋อตเตอรี่</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <img src="/img/frame_2024-05-18_16-48-14.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">สถานะ : โสด</h5>
-            <h5 class="card-second">ชื่อ : ล๋อตเตอรี่</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
+    <div class="container">
+      <div id="cards-container" class="row">
+        <!-- Cards will be inserted here -->
       </div>
     </div>
-
-    <div class="row mt-5 ">
-      <div class="col-sm-3">
-        <div class="card">
-          <img src="/img/frame_2024-05-18_16-48-14.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">สถานะ : โสด</h5>
-            <h5 class="card-second">ชื่อ : ล๋อตเตอรี่</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <img src="/img/frame_2024-05-18_16-48-14.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">สถานะ : โสด</h5>
-            <h5 class="card-second">ชื่อ : ล๋อตเตอรี่</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <img src="/img/frame_2024-05-18_16-48-14.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">สถานะ : โสด</h5>
-            <h5 class="card-second">ชื่อ : ล๋อตเตอรี่</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div class="card">
-          <img src="/img/frame_2024-05-18_16-48-14.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">สถานะ : โสด</h5>
-            <h5 class="card-second">ชื่อ : ล๋อตเตอรี่</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    
 
     <nav aria-label="...">
       <ul class="pagination" id="pagination-container">
