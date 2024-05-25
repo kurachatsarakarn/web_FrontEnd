@@ -133,6 +133,11 @@ body{
     margin-left: 800px;
 }
 
+.graph{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
 
