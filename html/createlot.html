@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="/css/createlot.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <!-- <script src="/js/active.js"></script> -->
+  <script src="/js/active.js"></script>
 </head>
 
 <body>
@@ -36,11 +36,11 @@
 
   <div class="text-box-create">
     <div class="create-box">
-      <input type="text" class="box" placeholder="สร้างชื่่อล็อต............">
+      <input id="newlot" name="newlot" type="text" class="box" placeholder="สร้างชื่่อล็อต............">
     </div>
   </div>
   <div class="accept-box">
-    <button type="submit">ยืนยัน</button>
+    <button type="submit" onclick="createlot()">ยืนยัน</button>
   </div>
 
 
