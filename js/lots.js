@@ -1,30 +1,57 @@
-function createnumpage() {
-  let currentPage = 3; // example current page number
+let current_page = 1;
+let total_pages = 100; // Set to total number of pages
+let value = document.getElementById('page');
+let totalPagesSpan = document.getElementById('total-pages');
 
-  // Get the container where the pagination items will be inserted
-  let paginationContainer = document.getElementById("pagination-container");
-
-  // Generate pagination items and insert them before the 'Next' button
-  for (let i = 1; i <= 5; i++) {
-    // Create a list item element
-    let li = document.createElement("li");
-    li.className = "page-item";
-
-    // Add 'active' class if it is the current page
-    if (i === currentPage) {
-      li.classList.add("active");
-    }
-
-    // Create a link element
-    let a = document.createElement("a");
-    a.className = "page-link";
-    a.href = "#";
-    a.textContent = i;
-
-    // Append the link to the list item
-    li.appendChild(a);
-
-    // Insert the list item before the 'Next' button
-    paginationContainer.insertBefore(li, paginationContainer.lastElementChild);
-  }
+if (total_pages === null) {
+    value.value = 0;
+    totalPagesSpan.textContent = "/0";
+} else {
+    value.value = current_page;
+    totalPagesSpan.textContent = "/" + total_pages;
 }
+
+function selectpage() {
+    let next = document.getElementById("next");
+    let previous = document.getElementById("previous");
+
+    next.onclick = function () {
+        if (total_pages === null || current_page >= total_pages) {
+            console.log('เกินละไอโง่');
+        } else {
+            current_page = parseInt(current_page) + 1; // Convert to integer before adding
+            value.value = current_page;
+            console.log("next page", current_page);
+        }
+    };
+
+    previous.onclick = function() {
+        if (total_pages === null || current_page <= 1) {
+            console.log('ติดลบไม่ได้ไอโง่');
+        } else {
+            current_page = parseInt(current_page) - 1; // Convert to integer before subtracting
+            value.value = current_page;
+            console.log("previous page", current_page);
+        }
+    };
+}
+
+function handleKeyPress(event) {
+    if (event.keyCode === 13) {
+        let valuechange = document.getElementById('page');
+        let newValue = parseInt(valuechange.value); // Convert to integer
+
+        if (total_pages === null || isNaN(newValue) || newValue > total_pages || newValue < 1) {
+            value.value = current_page;
+            console.log('Invalid page number');
+        } else {
+            current_page = newValue;
+            value.value = current_page;
+            console.log("Page set to", current_page);
+        }
+
+        console.log("Enter key pressed!");
+    }
+}
+
+selectpage();
