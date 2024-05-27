@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel Image Loader</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="box-1 g-2 mt-4">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner" id="carousel-inner">
+                <!-- Carousel items will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fetch the data from the API
+            fetch('http://127.0.0.1:5000/api/products/4')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length > 0) {
+                        // Extract the path from the response
+                        const imagePath = data[0].path;
+                        // Construct the URL for the image
+                        const imageUrl = `http://127.0.0.1:5000/image?filename=${imagePath}`;
+                        // Get the carousel inner element
+                        const carouselInner = document.getElementById('carousel-inner');
+                        // Create a new div for the carousel item
+                        const carouselItem = document.createElement('div');
+                        carouselItem.classList.add('carousel-item', 'active'); // Assuming this is the only item and should be active
+                        // Create the img element
+                        const imgElement = document.createElement('img');
+                        imgElement.src = imageUrl;
+                        imgElement.classList.add('d-block', 'w-100');
+                        imgElement.alt = '...';
+                        // Append the img to the carousel item
+                        carouselItem.appendChild(imgElement);
+                        // Append the carousel item to the carousel inner
+                        carouselInner.appendChild(carouselItem);
+                    } else {
+                        console.error('No data found');
+                    }
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        });
+    </script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

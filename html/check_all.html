@@ -66,11 +66,12 @@
               try {
                 lots = window.localStorage.getItem('id_lotspage');
                 console.log(lots)
-                const response = await fetch("http://127.0.0.1:5000/api/graph/"+lots,{
-                  method: ["GET"],
-                  headers:{
-                    "Authorization": "Bearer "+window.localStorage.getItem("Token")
-                  }
+                const response = await fetch("http://127.0.0.1:5000/api/graph/"+lots, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer `+window.localStorage.getItem("Token")
+                    }
                 });
                 const data = await response.json();
         
@@ -152,8 +153,9 @@
         </div>
       
         <div class="col-button mb-1">
-          <button type="button" id="fas fa-camera" class="btn btn-success" onclick="window.close()">ยอมรับ</button>
-          <button type="button" id="fas fa-camera" class="btn btn-danger" onclick="window.close()">ปฏิเสธ</button>
+          <button type="button" id="fas fa-camera" class="btn btn-success" onclick="approve()">อนุมัติ</button>
+          <button type="button" id="fas fa-camera" class="btn btn-danger" onclick="reject()">ปฏิเสธ</button>
+          <button type="button" id="fas fa-camera" class="btn btn-warning" onclick="waitCheck()">รอการตรวจสอบ</button>
         </div>
         
 
