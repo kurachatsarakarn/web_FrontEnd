@@ -1,7 +1,12 @@
 // Fetch data from the API
 lots = window.localStorage.getItem('id_lotspage');
 console.log(lots)
-fetch('http://127.0.0.1:5000/api/lotId/'+lots)
+fetch('http://127.0.0.1:5000/api/lotId/'+lots,{
+  method: "GET",
+  headers:{
+    "Authorization": "Bearer "+window.localStorage.getItem("Token")
+  }
+})
     .then(response => response.json())
     .then(data => {
         // Extract data from the API response
@@ -13,7 +18,12 @@ fetch('http://127.0.0.1:5000/api/lotId/'+lots)
     })
     .catch(error => console.error('Error fetching data:', error));
 
-    fetch('http://127.0.0.1:5000/api/lotstatusId/'+lots)
+    fetch('http://127.0.0.1:5000/api/lotstatusId/'+lots,{
+      method: "GET",
+      headers:{
+        "Authorization": "Bearer "+window.localStorage.getItem("Token")
+      }
+    })
     .then(response => response.json())
     .then(data => {
         // Extract data from the API response
@@ -36,7 +46,12 @@ fetch('http://127.0.0.1:5000/api/lotId/'+lots)
 
       async function fetchData() {
         try {
-          const response = await fetch(apiUrl);
+          const response = await fetch(apiUrl,{
+            method: "GET",
+            headers:{
+              "Authorization": "Bearer "+window.localStorage.getItem("Token")
+            }
+          });
           const data = await response.json();
           console.log(data);  // ตรวจสอบข้อมูลที่ดึงมาได้
           populateCarousel(data);

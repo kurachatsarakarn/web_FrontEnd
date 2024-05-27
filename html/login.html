@@ -68,28 +68,5 @@
       <button type="submit" onclick="login()">Login</button>
     </div>
   </body>
-  <script>
-    function login() {
-      const dataToSend = {
-        username: document.getElementById("username").value,
-        password: document.getElementById("password").value,
-      };
-      fetch("http://127.0.0.1:5000/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dataToSend),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data.user);
-          window.localStorage.setItem("user",data.user)
-          window.open("index.html","_self")
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  </script>
+  <script src="/js/login.js"></script>
 </html>

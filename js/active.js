@@ -1,11 +1,5 @@
 var socket;
 window.onload = function () {
-  auth = window.localStorage.getItem("user");
-  console.log("auth= " + auth);
-  if (!auth) {
-    window.open("login.html", "_self");
-    console.log("ssss");
-  }
   fetchAndPopulateSelect();
   const video = document.getElementById("video");
   const canvas = document.getElementById("canvas");
@@ -68,6 +62,7 @@ function sendFrame_pic() {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": "Bearer "+window.localStorage.getItem("Token")
     },
     body: JSON.stringify(dataToSend),
   })
@@ -90,11 +85,8 @@ function sendFrame_pic() {
     });
 }
 
-function logout(){
-  window.localStorage.clear();
-  window.open("login.html","_self");
-}
 
+//lots
 async function fetchAndPopulateSelect() {
   try {
     const selectElement = document.getElementById('mySelect');
@@ -102,7 +94,13 @@ async function fetchAndPopulateSelect() {
     
     // URL ของ API ที่จะใช้ fetch
     const apiUrl = 'http://127.0.0.1:5000/api/lots'; // เปลี่ยน URL นี้เป็น URL จริงของ API
-    const response = await fetch(apiUrl);
+    const response = await fetch(apiUrl,{
+      method : "GET",
+      headers:{
+        "Authorization": "Bearer "+window.localStorage.getItem("Token")
+      }
+      
+    });
     const data = await response.json();
 
     console.log('Data received:', data);
@@ -136,3 +134,6 @@ async function fetchAndPopulateSelect() {
     console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
   }
 }
+
+
+

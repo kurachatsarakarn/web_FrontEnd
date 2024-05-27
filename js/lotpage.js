@@ -17,7 +17,12 @@ search.onclick = function () {
 };
 //gen page
 function page(page) {
-  fetch("http://127.0.0.1:5000/api/lots/" + page)
+  fetch("http://127.0.0.1:5000/api/lots/" + page,{
+    method: "GET",
+    headers:{
+      "Authorization": "Bearer "+window.localStorage.getItem("Token")
+    }
+  })
     .then((response) => response.json())
     .then((data) => {
       const cardsContainer = document.getElementById("cards-container");
@@ -80,6 +85,7 @@ function pagesearch(page, Inputsearch) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": "Bearer "+window.localStorage.getItem("Token")
     },
     body: JSON.stringify({ page: page, id: Inputsearch }),
   })
@@ -145,6 +151,7 @@ async function getpage() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": "Bearer "+window.localStorage.getItem("Token")
       },
     });
     const data = await response.json();
@@ -162,6 +169,7 @@ async function getpagesearch(Inputsearch) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": "Bearer "+window.localStorage.getItem("Token")
       },
       body: JSON.stringify({ id: Inputsearch }),
     });
