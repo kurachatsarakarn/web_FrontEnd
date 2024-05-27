@@ -1,12 +1,3 @@
-// ดึงค่า urlToSend จาก URL
-window.onload = function () {
-  auth = window.localStorage.getItem("user");
-  console.log("auth= " + auth);
-  if (!auth) {
-    window.open("login.html", "_self");
-    console.log("ssss");
-  }
-};
 const file = window.localStorage.getItem("filename");
 console.log(file);
 const numstr = window.localStorage.getItem("num");
