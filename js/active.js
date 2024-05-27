@@ -49,6 +49,10 @@ window.onload = function () {
 };
 // ฟังก์ชันสำหรับการส่งรูปภาพและเก็บใน localStorage
 function sendFrame_pic() {
+  if(!window.localStorage.getItem('id_lots')){
+    alert("กรุณาเลือกlost");
+    throw new Error("กรุณาเลือกlost");
+  }
   console.log("Sending frame...");
   const video = document.getElementById("video");
   const canvas = document.getElementById("canvas");
@@ -73,11 +77,6 @@ function sendFrame_pic() {
       window.localStorage.setItem("num", JSON.stringify(data.num));
       window.localStorage.setItem("percent",data.percent)
       console.log(data.percent)
-      // op =document.getElementById("option");
-      // if(op)
-      //   {
-      //     window.localStorage.setItem("id_lots",op.value);
-      //   }
       window.open("pic.html", "_blank");
     })
     .catch((error) => {
