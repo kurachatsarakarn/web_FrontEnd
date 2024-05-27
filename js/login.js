@@ -1,4 +1,5 @@
 function login() {
+  console.log(document.getElementById("username").value);
     const dataToSend = {
       username: document.getElementById("username").value,
       password: document.getElementById("password").value,
@@ -13,7 +14,6 @@ function login() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.user);
         window.localStorage.setItem("Token",data.Token);
         window.localStorage.setItem("Role",data.Role);
         window.open("index.html","_self");

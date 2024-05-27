@@ -7,6 +7,7 @@ if (!Role) {
   console.log("ssss");
 }
 
+
 function logout(){
   window.localStorage.clear();
   window.open("login.html","_self");
