@@ -81,12 +81,7 @@
               try {
                 lots = window.localStorage.getItem('id_lotspage');
                 console.log(lots)
-                const response = await fetch("http://127.0.0.1:5000/api/graph/"+lots, {
-                    method: ["GET"],
-                    headers: {
-                        "Authorization": `Bearer `+window.localStorage.getItem("Token")
-                    }
-                });
+                const response = await fetch("http://127.0.0.1:5000/api/graph/"+lots);
                 const data = await response.json();
         
                 // Parse the received data
