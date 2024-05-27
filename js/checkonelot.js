@@ -13,6 +13,21 @@ fetch('http://127.0.0.1:5000/api/lotId/'+lots)
     })
     .catch(error => console.error('Error fetching data:', error));
 
+    fetch('http://127.0.0.1:5000/api/lotstatusId/'+lots)
+    .then(response => response.json())
+    .then(data => {
+        // Extract data from the API response
+        let { status } = data[0];
+        
+        if(status == null){
+          status = "รอการตรวจสอบ"
+        }
+
+        // Display ID Lots value
+        document.getElementById('LotStatus').innerText = ` ${status}`;
+    })
+    .catch(error => console.error('Error fetching data:', error));
+
     // document.getElementById("btn btn-success").onclick = function(){
         
     // }
