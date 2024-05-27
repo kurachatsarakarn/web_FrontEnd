@@ -45,17 +45,22 @@ fetch('http://127.0.0.1:5000/api/lotId/'+lots)
         }
       }
 
-      function createCarouselItem(imageUrl, itemName, isActive) {
+      function createCarouselItem(imageUrl, itemId,isActive) {
         const div = document.createElement('div');
         div.className = isActive ? 'carousel-item active' : 'carousel-item';
 
         const a = document.createElement('a');
-        a.href = 'check_lots.html';
+        a.href = `check_lots.html`;
+        a.value = 'itemId';
+
+        a.addEventListener('click', function() {
+        localStorage.setItem('itemId', itemId);
+        });
 
         const img = document.createElement('img');
         img.src = imageUrl;
         img.className = 'd-block w-100';
-        img.alt = itemName;
+        img.alt = itemId;
         img.onload = function() {
           console.log(`Image loaded: ${img.src}`);  // ตรวจสอบเมื่อรูปภาพถูกโหลด
         };
@@ -75,7 +80,7 @@ fetch('http://127.0.0.1:5000/api/lotId/'+lots)
         data.forEach((item, index) => {
           const imageUrl = `http://127.0.0.1:5000/image?filename=${item.path}`;
           const isActive = index === 0;
-          const carouselItem = createCarouselItem(imageUrl, item.name, isActive);
+          const carouselItem = createCarouselItem(imageUrl, item.id, isActive);
           carouselInner.appendChild(carouselItem);
         });
 
