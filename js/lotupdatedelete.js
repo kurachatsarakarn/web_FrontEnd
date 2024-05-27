@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
           const deleteButton = document.createElement('button');
           deleteButton.textContent = 'delete';
-          deleteButton.className = 'delete-button'; // แก้ชื่อคลาสให้ถูกต้อง
+          deleteButton.className = 'delete-button'; 
           deleteButton.onclick = () => deleteItem(item.id);
           deleteCell.appendChild(deleteButton);
       });

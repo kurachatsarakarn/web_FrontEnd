@@ -22,14 +22,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             }
+
         });
         
         if (response.ok) {
             const data = await response.json();
+
             
             if (data.length > 0) {
                 // Extract the path from the response
                 const imagePath = data[0].path;
+                console.log(imagePath+"ssggdfgfdg")
+
                 // Construct the URL for the image
                 const imageUrl = `http://127.0.0.1:5000/image?filename=${imagePath}`;
                 // Get the carousel inner element

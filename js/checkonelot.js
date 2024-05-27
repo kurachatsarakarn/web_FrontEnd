@@ -130,6 +130,7 @@ fetch('http://127.0.0.1:5000/api/lotId/'+lots,{
       .then(data => {
           if (data.rowcount) {
               alert('การอนุมัติเสร็จสมบูรณ์');
+              window.location.href = "lot.html";
               
           } else {
               alert('เกิดข้อผิดพลาดในการอนุมัติ');
@@ -164,6 +165,7 @@ fetch('http://127.0.0.1:5000/api/lotId/'+lots,{
       .then(data => {
           if (data.rowcount) {
               alert('การปฏิเสธเสร็จสมบูรณ์');
+              window.location.href = "lot.html";
               
           } else {
               alert('เกิดข้อผิดพลาดในการอนุมัติ');
@@ -197,6 +199,7 @@ fetch('http://127.0.0.1:5000/api/lotId/'+lots,{
       .then(data => {
           if (data.rowcount) {
               alert('กำลังรอตรวจสอบ');
+              window.location.href = "lot.html";
               
           } else {
               alert('เกิดข้อผิดพลาดในการรอการตรวจสอบ');

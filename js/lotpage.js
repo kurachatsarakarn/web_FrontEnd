@@ -35,13 +35,17 @@ function page(page) {
         const imageUrl = `http://127.0.0.1:5000/image?filename=${item.path}`;
 
         let col = "";
-        if (item.status == null || item.status === "รอการตรวจสอบ") {
+        if (item.status == null) {
+          item.status = "รอการตรวจสอบ"; 
           col = "yellow";
-        } else if (item.status == "อนุมัติแล้ว") {
+        } else if (item.status === "รอการตรวจสอบ") {
+          col = "yellow";
+        } else if (item.status === "อนุมัติแล้ว") {
           col = "green";
-        } else if (item.status == "ถูกปฏิเสธ") {
+        } else if (item.status === "ถูกปฏิเสธ") {
           col = "red";
         }
+        
         const card = document.createElement("div");
         card.className = "col-sm-3";
         card.innerHTML = `
