@@ -6,3 +6,8 @@ if (!Role) {
   window.open("login.html", "_self");
   console.log("ssss");
 }
+
+function logout(){
+  window.localStorage.clear();
+  window.open("login.html","_self");
+}

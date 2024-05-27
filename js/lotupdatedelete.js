@@ -6,7 +6,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // ฟังก์ชันสำหรับดึงข้อมูลจาก API
     async function fetchData() {
       try {
-        const response = await fetch(apiUrl);
+        const response = await fetch(apiUrl,{
+          method: "GET",
+          headers:{
+            "Authorization": "Bearer "+window.localStorage.getItem("Token")
+          }
+        });
         const data = await response.json();
         populateTable(data);
       } catch (error) {
@@ -71,7 +76,8 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('http://127.0.0.1:5000/api/lots', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        "Authorization": "Bearer "+window.localStorage.getItem("Token")
       },
       body: JSON.stringify(dataToSend)
     })

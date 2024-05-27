@@ -55,6 +55,7 @@ function delete_capture() {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": "Bearer "+window.localStorage.getItem("Token")
     },
     body: JSON.stringify(dataToSend),
   })
@@ -69,13 +70,12 @@ function delete_capture() {
 }
 
 function save_capture() {
-  user = window.localStorage.getItem("user");
+  user = window.localStorage.getItem("Token");
   console.log(file)
   console.log(num[0])
   console.log(user)
   const dataToSend = {
     id: id_lots,
-    user: user,
     BreakClean: num[0],
     CompleteSeeds: num[1],
     Dust: num[2],
@@ -88,6 +88,7 @@ function save_capture() {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Authorization": "Bearer "+window.localStorage.getItem("Token")
     },
     body: JSON.stringify(dataToSend),
   })
