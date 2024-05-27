@@ -23,26 +23,29 @@ document.addEventListener('DOMContentLoaded', function() {
     function populateTable(data) {
       const table = document.getElementById('data-table');
       data.forEach(item => {
-        const row = table.insertRow();
-        const nameCell = row.insertCell(0);
-        const dateCell = row.insertCell(1);
-        const updateCell = row.insertCell(2);
-        const deleteCell = row.insertCell(3);
+          const row = table.insertRow();
+          const nameCell = row.insertCell(0);
+          const dateCell = row.insertCell(1);
+          const updateCell = row.insertCell(2);
+          const deleteCell = row.insertCell(3);
   
-        nameCell.textContent = item.name;
-        dateCell.textContent = new Date(item.date).toLocaleDateString();
+          nameCell.textContent = item.name;
+          dateCell.textContent = new Date(item.date).toLocaleDateString();
   
-        const updateButton = document.createElement('button');
-        updateButton.textContent = 'update';
-        updateButton.onclick = () => updateItem(item.id);
-        updateCell.appendChild(updateButton);
+          const updateButton = document.createElement('button');
+          updateButton.textContent = 'update';
+          updateButton.className = 'update-button';
+          updateButton.onclick = () => updateItem(item.id);
+          updateCell.appendChild(updateButton);
   
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'delete';
-        deleteButton.onclick = () => deleteItem(item.id);
-        deleteCell.appendChild(deleteButton);
+          const deleteButton = document.createElement('button');
+          deleteButton.textContent = 'delete';
+          deleteButton.className = 'delete-button'; // แก้ชื่อคลาสให้ถูกต้อง
+          deleteButton.onclick = () => deleteItem(item.id);
+          deleteCell.appendChild(deleteButton);
       });
     }
+  
   
     // ฟังก์ชันสำหรับอัพเดทข้อมูล (คุณต้องเพิ่มฟังก์ชันจริง)
     function updateItem(id) {
@@ -95,4 +98,6 @@ document.addEventListener('DOMContentLoaded', function() {
       alert('An error occurred while creating the lot.');
     });
   }
+  
+
   

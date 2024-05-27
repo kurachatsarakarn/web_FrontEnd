@@ -89,7 +89,60 @@ body{
     border: 2px solid #0064c2; /* เพิ่มสีกรอบ */
     margin-top: 25px;
 }
+.accept-box button:hover{
+    background-color: #00488b;
+}
 
 
 
+
+
+#data-table {
+    width: 80%;
+    margin: 50px auto;
+    border-collapse: collapse;
+    font-size: 18px;
+    text-align: left;
+}
+
+#data-table th, #data-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+}
+
+#data-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#data-table th {
+    background-color: #0064c2;
+    color: white;
+}
+
+
+.delete-button {
+    background-color: #f44336; /* สีแดง */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #e53935; /* สีแดงอ่อนเมื่อ hover */
+}
+
+.update-button {
+    background-color: #4CAF50; /* สีเขียว */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.update-button:hover {
+    background-color: #45a049; /* สีเขียวอ่อนเมื่อ hover */
+}
 
