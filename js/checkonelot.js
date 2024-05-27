@@ -105,4 +105,106 @@ fetch('http://127.0.0.1:5000/api/lotId/'+lots,{
 
       fetchData();
     });
-      
+
+
+    //////////// approve button
+    function approve() {
+      console.log("fsfsdf")
+
+      const dataToSend = {
+          idlot: lots,
+          status: "อนุมัติแล้ว",
+          date:"2024-05-05"
+      };
+      console.log(lots)
+  
+      fetch('http://127.0.0.1:5000/api/status', { // เปลี่ยน URL ไปยัง API endpoint ของคุณ
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + window.localStorage.getItem('Token')
+          },
+          body: JSON.stringify(dataToSend)
+      })
+      .then(response => response.json())
+      .then(data => {
+          if (data.rowcount) {
+              alert('การอนุมัติเสร็จสมบูรณ์');
+              
+          } else {
+              alert('เกิดข้อผิดพลาดในการอนุมัติ');
+          }
+      })
+      .catch(error => {
+          console.error('Error:', error);
+          alert('เกิดข้อผิดพลาดในการเชื่อมต่อกับ API');
+      });
+    }
+
+
+    function reject() {
+      console.log("fsfsdf")
+
+      const dataToSend = {
+          idlot: lots,
+          status: "ถูกปฏิเสธ",
+          date:"2024-05-05"
+      };
+      console.log(lots)
+  
+      fetch('http://127.0.0.1:5000/api/status', { // เปลี่ยน URL ไปยัง API endpoint ของคุณ
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + window.localStorage.getItem('Token')
+          },
+          body: JSON.stringify(dataToSend)
+      })
+      .then(response => response.json())
+      .then(data => {
+          if (data.rowcount) {
+              alert('การปฏิเสธเสร็จสมบูรณ์');
+              
+          } else {
+              alert('เกิดข้อผิดพลาดในการอนุมัติ');
+          }
+      })
+      .catch(error => {
+          console.error('Error:', error);
+          alert('เกิดข้อผิดพลาดในการเชื่อมต่อกับ API');
+      });
+    }
+
+    function waitCheck() {
+      console.log("fsfsdf")
+
+      const dataToSend = {
+          idlot: lots,
+          status: "รอการตรวจสอบ",
+          date:"2024-05-05"
+      };
+      console.log(lots)
+  
+      fetch('http://127.0.0.1:5000/api/status', { // เปลี่ยน URL ไปยัง API endpoint ของคุณ
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + window.localStorage.getItem('Token')
+          },
+          body: JSON.stringify(dataToSend)
+      })
+      .then(response => response.json())
+      .then(data => {
+          if (data.rowcount) {
+              alert('กำลังรอตรวจสอบ');
+              
+          } else {
+              alert('เกิดข้อผิดพลาดในการรอการตรวจสอบ');
+          }
+      })
+      .catch(error => {
+          console.error('Error:', error);
+          alert('เกิดข้อผิดพลาดในการเชื่อมต่อกับ API');
+      });
+    }
+  
