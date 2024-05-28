@@ -34,7 +34,6 @@ function login() {
       window.localStorage.setItem("Token", data.Token);
       window.localStorage.setItem("Role", data.Role);
       Swal.fire({
-        position: "top-end",
         icon: "success",
         title: "Login success",
       }).then(() => {
