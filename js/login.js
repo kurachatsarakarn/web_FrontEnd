@@ -1,4 +1,7 @@
+
+
 function login() {
+
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
   console.log(username);
@@ -26,11 +29,24 @@ function login() {
       console.log("ddd", data);
       window.localStorage.setItem("Token", data.Token);
       window.localStorage.setItem("Role", data.Role);
-      window.open("index.html", "_self");
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Login success",
+      }).then(() => {
+        window.open("index.html", "_self");
+      });
     })
     .catch((error) => {
       // แสดงข้อความข้อผิดพลาดใน console และ alert
       console.error("Error:", error);
-      alert("Login failed: " + error.message);
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Login fail",
+        // showConfirmButton: false,
+        // timer: 1500
+      });
+      // alert("Login failed: " + error.message);
     });
 }
