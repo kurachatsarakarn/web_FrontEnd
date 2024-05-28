@@ -16,7 +16,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="/lib/sweetalert2/dist/sweetalert2.all.min.js"></script>
+  <script src="/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
   <style>
     #myPieChart {
       max-width: 600px;
@@ -78,7 +78,7 @@
         
                 // Parse the received data
                 const apiData = data[0];
-                const labels = ["BreakClean", "CompleteSeeds", "Dust", "MoldSpores", "broken", "fullbrokenseeds"];
+                const labels = ["เมล็ดแตกสะอาด", "เมล็ดสมบูรณ์", "ฝุ่นซังแตกหยิม", "เมล็ดเป็นราแบบมีสปอร์รา", "เมล็ดเสียปกติ", "เมล็ดเสียเต็มเมล็ด"];
                 const values = [
                   parseFloat(apiData.BreakClean),
                   parseFloat(apiData.CompleteSeeds),

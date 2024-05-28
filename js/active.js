@@ -50,7 +50,10 @@ window.onload = function () {
 // ฟังก์ชันสำหรับการส่งรูปภาพและเก็บใน localStorage
 function sendFrame_pic() {
   if(!window.localStorage.getItem('id_lots')){
-    alert("กรุณาเลือกlost");
+    Swal.fire({
+      icon: "warning",
+      title: "กรุณาเลือกlotก่อนทำการถ่าย"
+    })
     throw new Error("กรุณาเลือกlost");
   }
   console.log("Sending frame...");
@@ -118,6 +121,10 @@ async function fetchAndPopulateSelect() {
           selectElement.appendChild(option);
         }
       });
+      const id_lots = window.localStorage.getItem('id_lots');
+      if(id_lots){
+        document.getElementById('mySelect').value = id_lots; 
+      }
     } else {
       console.error('รูปแบบข้อมูลไม่ถูกต้อง:', data);
     }

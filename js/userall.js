@@ -1,4 +1,5 @@
 
+
 document.addEventListener('DOMContentLoaded', function() {
     // URL ของ API
     const apiUrl = 'http://127.0.0.1:5000/api/user';
@@ -58,18 +59,64 @@ document.addEventListener('DOMContentLoaded', function() {
     // ฟังก์ชันสำหรับอัพเดทข้อมูล (คุณต้องเพิ่มฟังก์ชันจริง)
     function updateItem(id) {
       console.log(`Update item with ID: ${id}`);
+      window.localStorage.setItem('id_user',id);
+      window.open('updateuser.html','_self');
       // เพิ่มโค้ดเพื่อจัดการการอัพเดท
     }
   
     // ฟังก์ชันสำหรับลบข้อมูล (คุณต้องเพิ่มฟังก์ชันจริง)
     function deleteItem(id) {
       console.log(`Delete item with ID: ${id}`);
+      Swal.fire({
+        title: "Good job!",
+        text: "You clicked the button!",
+        icon: "success",
+        showCancelButton: true,
+        confirmButtonText: "OK",
+        cancelButtonText: "Cancel"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          deleteuser(id);
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          // Option 2 is clicked (or cancel button is clicked)
+          // Handle Option 2 action here
+        }
+      });
+      
       // เพิ่มโค้ดเพื่อจัดการการลบ
     }
   
     // เรียกใช้ฟังก์ชันเพื่อดึงข้อมูลและเพิ่มลงในตาราง
     fetchData();
   });
+
+
+  function deleteuser(id){
+    const dataToSend = {
+      id: id,
+    };
+    fetch('http://127.0.0.1:5000/api/user', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization": "Bearer " + window.localStorage.getItem("Token")
+      },
+      body: JSON.stringify(dataToSend)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.rowcount > 0) {
+        window.open('userall.html', '_self');
+      } else {
+        console.log('Failed to delete user.');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('An error occurred while creating the user.');
+    });
+  };
+
   
   
 

@@ -19,6 +19,10 @@ function login() {
       // ตรวจสอบสถานะของการตอบกลับ
       if (!response.ok) {
         // ถ้าสถานะไม่ใช่ 2xx, ขว้างข้อผิดพลาดพร้อมข้อความสถานะ
+        Swal.fire({
+          icon: "error",
+          title: "Login fail",
+        })
         return response.json().then((data) => {
           throw new Error(data.msg || "Login failed");
         });
@@ -39,7 +43,10 @@ function login() {
       });
     })
     .catch((error) => {
-      // แสดงข้อความข้อผิดพลาดใน console และ alert
+      Swal.fire({
+        icon: "error",
+        title: "Login fail",
+      })
       console.error("Error:", error);
       alert("Login failed: " + error.message);
     });

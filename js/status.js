@@ -30,10 +30,13 @@ document.addEventListener("DOMContentLoaded", function () {
       // แก้ไขจาก data เป็น data.myresult
       const row = table.insertRow();
       const nameCell = row.insertCell(0);
-      const dateCell = row.insertCell(1);
+      const lotsCell = row.insertCell(1);
       const statusCell = row.insertCell(2);
+      const dateCell = row.insertCell(3);
+   
 
       nameCell.textContent = item.name;
+      lotsCell.textContent = item.lots;
       dateCell.textContent = new Date(item.date).toLocaleDateString();
       statusCell.textContent = item.status;
     });
