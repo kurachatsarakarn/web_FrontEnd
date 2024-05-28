@@ -42,17 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ฟังก์ชันสำหรับอัพเดทข้อมูล (คุณต้องเพิ่มฟังก์ชันจริง)
-  function updateItem(id) {
-    console.log(`Update item with ID: ${id}`);
-    // เพิ่มโค้ดเพื่อจัดการการอัพเดท
-  }
-
-  // ฟังก์ชันสำหรับลบข้อมูล (คุณต้องเพิ่มฟังก์ชันจริง)
-  function deleteItem(id) {
-    console.log(`Delete item with ID: ${id}`);
-    // เพิ่มโค้ดเพื่อจัดการการลบ
-  }
 
   // เรียกใช้ฟังก์ชันเพื่อดึงข้อมูลและเพิ่มลงในตาราง
   fetchData();

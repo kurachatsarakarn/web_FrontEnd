@@ -68,12 +68,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function deleteItem(id,name) {
       console.log(`Delete item with ID: ${id}`);
       Swal.fire({
-        title: "Good job!",
-        text: `ลบ  ${name}`,
+        title: "ยืนยันการลบข้อมูล ? ",
+        text: `คุณกำลังลบผู้ใช้ ${name} `,
         icon: "warning",
         showCancelButton: true,
-        confirmButtonText: "OK",
-        cancelButtonText: "Cancel"
+        confirmButtonText: "ตกลง",
+        cancelButtonText: "ยกเลิก"
       }).then((result) => {
         if (result.isConfirmed) {
           deleteuser(id);

@@ -1,0 +1,20 @@
+#createuser {
+    background-color: #0064c2; /* Green background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 15px 32px; /* Some padding */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Inline block */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Pointer/hand icon */
+    border-radius: 12px; /* Rounded corners */
+    transition: background-color 0.3s;
+    margin-left: 190px;
+    margin-top: 20px;
+}
+
+#createuser:hover {
+    background-color: #00478a; /* Darker green on hover */
+}
+
