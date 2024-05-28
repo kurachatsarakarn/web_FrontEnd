@@ -10,5 +10,11 @@ if (!Role) {
 
 function logout(){
   window.localStorage.clear();
-  window.open("login.html","_self");
+  
+  Swal.fire({
+    icon: "success",
+    title: "Logoutสำเร็จ",
+  }).then(() => {
+    window.open("login.html","_self");
+  });
 }
