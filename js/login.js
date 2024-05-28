@@ -31,6 +31,11 @@ function login() {
     .catch((error) => {
       // แสดงข้อความข้อผิดพลาดใน console และ alert
       console.error("Error:", error);
-      alert("Login failed: " + error.message);
+      // alert("Login failed: " + error.message);
+      Swal.fire({
+        title: "Good job!",
+        text: "You clicked the button!",
+        icon: "success"
+      });
     });
 }
