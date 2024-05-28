@@ -31,8 +31,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const row = table.insertRow();
       const nameCell = row.insertCell(0);
       const lotsCell = row.insertCell(1);
-      const dateCell = row.insertCell(2);
-      const statusCell = row.insertCell(3);
+      const statusCell = row.insertCell(2);
+      const dateCell = row.insertCell(3);
+   
 
       nameCell.textContent = item.name;
       lotsCell.textContent = item.lots;
