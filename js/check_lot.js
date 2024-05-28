@@ -76,7 +76,7 @@ async function fetchData() {
 
       // Parse the received data
       const apiData = data[0];
-      const labels = ["BreakClean", "CompleteSeeds", "Dust", "MoldSpores", "broken", "fullbrokenseeds"];
+      const labels = ["เมล็ดแตกสะอาด", "เมล็ดสมบูรณ์", "ฝุ่นซังแตกหยิม", "เมล็ดเป็นราแบบมีสปอร์รา", "เมล็ดเสียปกติ", "เมล็ดเสียเต็มเมล็ด"];
       const values = [
         parseFloat(apiData.BreakClean),
         parseFloat(apiData.CompleteSeeds),
