@@ -1,40 +1,35 @@
-document.getElementById('createuser').onclick = function()
-{
-    
-}
-
-
-function createlot() {
-    const lotName = document.getElementById('newlot').value;
-  
-    if (!lotName) {
-      alert('กรุณาใส่ชื่่อล็อต');
-      return;
-    }
-  
-    const dataToSend = {
-      name: lotName // Assuming you want to send the input value as the 'date'
+document.addEventListener('DOMContentLoaded', function() {
+  const createUserButton = document.getElementById('createuser');
+  if (createUserButton) {
+    createUserButton.onclick = function() {
+      const dataToSend = {
+        name: document.getElementById('username').value,
+        password: document.getElementById('password').value,
+        Role: document.getElementById('Role').value
+      };
+      fetch('http://127.0.0.1:5000/api/user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          "Authorization": "Bearer " + window.localStorage.getItem("Token")
+        },
+        body: JSON.stringify(dataToSend)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.rowcount > 0) {
+          alert('User created successfully!');
+          window.open('userall.html', '_self');
+        } else {
+          alert('Failed to create user.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while creating the user.');
+      });
     };
-  
-    fetch('http://127.0.0.1:5000/api/lots', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        "Authorization": "Bearer "+window.localStorage.getItem("Token")
-      },
-      body: JSON.stringify(dataToSend)
-    })
-    .then(response => response.json())
-    .then(data => {
-      if (data.rowcount > 0) {
-        alert('Lot created successfully!');
-        document.getElementById('newlot').value = ''; // Clear the input field
-      } else {
-        alert('Failed to create lot.');
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      alert('An error occurred while creating the lot.');
-    });
+  } else {
+    console.error('Element with id "createuser" not found');
   }
+});

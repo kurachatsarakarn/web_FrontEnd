@@ -62,8 +62,8 @@ function delete_capture() {
     .then((response) => response.json())
     .then((data) => {
       console.log("Success:", data);
-      window.localStorage.removeItem("id_lots");
-      window.localStorage.removeItem("lots");
+      // window.localStorage.removeItem("id_lots");
+      // window.localStorage.removeItem("lots");
       window.close();
     })
     .catch((error) => {
@@ -96,8 +96,8 @@ function save_capture() {
   })
     .then((response) => response.json())
     .then((data) => {
-      window.localStorage.removeItem("id_lots");
-      window.localStorage.removeItem("lots");
+      // window.localStorage.removeItem("id_lots");
+      // window.localStorage.removeItem("lots");
       console.log("Success:", data);
       window.close();
     })

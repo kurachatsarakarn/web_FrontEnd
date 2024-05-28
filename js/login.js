@@ -30,9 +30,9 @@ function login() {
       window.localStorage.setItem("Token", data.Token);
       window.localStorage.setItem("Role", data.Role);
       Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Login success",
+        title: "Good job!",
+        text: "You clicked the button!",
+        icon: "success"
       }).then(() => {
         window.open("index.html", "_self");
       });
@@ -40,6 +40,11 @@ function login() {
     .catch((error) => {
       // แสดงข้อความข้อผิดพลาดใน console และ alert
       console.error("Error:", error);
-      alert("Login failed: " + error.message);
+      // alert("Login failed: " + error.message);
+      Swal.fire({
+        title: "Good job!",
+        text: "You clicked the button!",
+        icon: "success"
+      })
     });
 }
