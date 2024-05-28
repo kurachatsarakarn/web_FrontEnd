@@ -2,14 +2,26 @@
     background-color: #0064c2;
 }
 
+
+.nav-link{
+    margin-top: 5px;
+}
+
+
+
 .nav-link:hover {
     background-color: #ffffff; /* เปลี่ยนสีข้อความเมื่อ hover */
     color:#0064c2
   }
-  .nav-linkdd:hover {
-    background-color: #ffffff; /* เปลี่ยนสีข้อความเมื่อ hover */
-    color:#0064c2
-  }
+
+
+.admin{
+    color: rgb(255, 7, 7);
+}
+
+.user{
+    color: rgb(98, 255, 7);
+}
 
 
 .nav{
