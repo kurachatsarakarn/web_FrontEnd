@@ -62,6 +62,8 @@ function delete_capture() {
     .then((response) => response.json())
     .then((data) => {
       console.log("Success:", data);
+      window.localStorage.removeItem("id_lots");
+      window.localStorage.removeItem("lots");
       window.close();
     })
     .catch((error) => {

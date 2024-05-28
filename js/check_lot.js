@@ -1,4 +1,5 @@
 id = window.localStorage.getItem('itemId');
+var img 
 
 document.addEventListener('DOMContentLoaded', function () {
     fetchData();
@@ -32,8 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (data.length > 0) {
                 // Extract the path from the response
                 const imagePath = data[0].path;
-                console.log(imagePath+"ssggdfgfdg")
-
+                img = imagePath;
                 // Construct the URL for the image
                 const imageUrl = `http://127.0.0.1:5000/image?filename=${imagePath}`;
                 // Get the carousel inner element
@@ -146,3 +146,30 @@ async function fetchData() {
     });
   }
 
+  function deleteproducts() {
+   
+    const dataToSend = {
+      file: img
+    };
+  
+    fetch('http://127.0.0.1:5000/api/products/'+id, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        "Authorization": "Bearer "+window.localStorage.getItem("Token")
+      },
+      body: JSON.stringify(dataToSend)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.file > 0) {
+        alert('Delete product successfully!');
+      } else {
+        alert('Failed to Delete Product.');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('An error occurred while creating the lot.');
+    });
+  }

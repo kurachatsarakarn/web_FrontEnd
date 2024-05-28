@@ -35,10 +35,8 @@ function page(page) {
         const imageUrl = `http://127.0.0.1:5000/image?filename=${item.path}`;
 
         let col = "";
-        if (item.status == null) {
-          item.status = "รอการตรวจสอบ"; 
-          col = "yellow";
-        } else if (item.status === "รอการตรวจสอบ") {
+        if (item.status == null || item.status == "รอการตรวจสอบ") {
+          item.status = "รอการตรวจสอบ";
           col = "yellow";
         } else if (item.status === "อนุมัติแล้ว") {
           col = "green";
@@ -104,23 +102,23 @@ function pagesearch(page, Inputsearch) {
         const imageUrl = `http://127.0.0.1:5000/image?filename=${item.path}`;
 
         let col = "";
-        if (item.status == null) {
+        if (item.status == null || item.status == "รอการตรวจสอบ") {
           item.status = "รอการตรวจสอบ";
+          console.log("status"+item.status)
           col = "yellow";
         } else if (item.status == "อนุมัติแล้ว") {
           col = "green";
         } else if (item.status == "ถูกปฏิเสธ") {
           col = "red";
         }
+        console.log("status"+item.status)
         const card = document.createElement("div");
         card.className = "col-sm-3";
         card.innerHTML = `
           <div class="card mb-5">
             <img src="${imageUrl}" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-status">สถานะ : <span class="${col}">${
-          item.status
-        }</span></h5>
+              <h5 class="card-status">สถานะ : <span class="${col}">${item.status}</span></h5>
               <h5 class="card-second">ชื่อ : ${item.lots}</h5>
               <p class="card-text"> Date: ${new Date(
                 item.date
