@@ -4,7 +4,7 @@ function login() {
 
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
-  console.log(username);
+
 
   const dataToSend = { username, password };
 
@@ -31,6 +31,7 @@ function login() {
     })
     .then((data) => {
       console.log("ddd", data);
+      window.localStorage.setItem("username", username);
       window.localStorage.setItem("Token", data.Token);
       window.localStorage.setItem("Role", data.Role);
       Swal.fire({

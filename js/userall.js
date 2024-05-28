@@ -1,5 +1,4 @@
 
-
 document.addEventListener('DOMContentLoaded', function() {
     // URL ของ API
     const apiUrl = 'http://127.0.0.1:5000/api/user';
@@ -37,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
           const updateCell = row.insertCell(4);
           const deleteCell = row.insertCell(5);
   
+
           idCell.textContent = item.id;
           nameCell.textContent = item.name;
           passCell.textContent = item.password;
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
           const deleteButton = document.createElement('button');
           deleteButton.textContent = 'delete';
           deleteButton.className = 'delete-button'; 
-          deleteButton.onclick = () => deleteItem(item.id);
+          deleteButton.onclick = () => deleteItem(item.id,item.name);
           deleteCell.appendChild(deleteButton);
       });
     }
@@ -65,12 +65,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   
     // ฟังก์ชันสำหรับลบข้อมูล (คุณต้องเพิ่มฟังก์ชันจริง)
-    function deleteItem(id) {
+    function deleteItem(id,name) {
       console.log(`Delete item with ID: ${id}`);
       Swal.fire({
         title: "Good job!",
-        text: "You clicked the button!",
-        icon: "success",
+        text: `ลบ  ${name}`,
+        icon: "warning",
         showCancelButton: true,
         confirmButtonText: "OK",
         cancelButtonText: "Cancel"

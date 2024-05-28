@@ -196,8 +196,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!lotName) {
       Swal.fire({
         icon: 'error',
-        title: 'Oops...',
-        text: 'Please enter lot name!',
+        title: 'ไม่สามารถสร้างล็อตได้',
+        text: 'กรุณาใส่ชื่อล็อต',
       });
       return;
     }
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (data.rowcount > 0) {
         Swal.fire({
           icon: 'success',
-          title: 'ล็อตถูกสร้าง',
+          title: 'ล็อตถูกสร้าง: '+lotName,
           showConfirmButton: false,
           timer: 1500
         }).then(() => {

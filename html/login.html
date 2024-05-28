@@ -6,6 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
+
     <style>
       body {
         display: flex;
@@ -14,7 +15,13 @@
         height: 100vh;
         margin: 0;
         font-family: Arial, sans-serif;
-        background-color: #f0f2f5;
+        background-image: url('/img/walpaper.PNG');
+        background-size: cover; /* ขยายรูปภาพให้เต็มพื้นที่ */
+        background-position: center; /* จัดตำแหน่งให้อยู่ตรงกลาง */
+      }
+      .icon{
+        width: 150px;
+        height: 150px;
       }
       .login-container {
         width: 300px;
@@ -23,6 +30,7 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         border-radius: 8px;
         text-align: center;
+        margin-bottom: 80px;
       }
       .login-container h1 {
         margin-bottom: 20px;
@@ -44,6 +52,7 @@
         font-size: 16px;
         border-radius: 4px;
         cursor: pointer;
+        margin-top: 20px;
       }
       .login-container button:hover {
         background: #0056b3;
@@ -53,6 +62,9 @@
   </head>
   <body>
     <div class="login-container">
+      <a>
+        <img src="KT-Food.ico" class="icon" alt="icon" />
+      </a>
       <h1>Login</h1>
       <input
         type="text"
