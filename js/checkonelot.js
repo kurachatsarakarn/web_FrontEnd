@@ -1,6 +1,7 @@
 // Fetch data from the API
 lots = window.localStorage.getItem('id_lotspage');
 console.log(lots)
+var lotname;
 fetch('http://127.0.0.1:5000/api/lotId/'+lots,{
   method: "GET",
   headers:{
@@ -10,11 +11,14 @@ fetch('http://127.0.0.1:5000/api/lotId/'+lots,{
     .then(response => response.json())
     .then(data => {
         // Extract data from the API response
-        const { name } = data[0];
-        
+        const  name  = data[0].name;
+        lotname = name;
+        console.log("sss"+lotname);
 
+        
         // Display ID Lots value
         document.getElementById('idLotsValue').innerText = `Name: ${name}`;
+
     })
     .catch(error => console.error('Error fetching data:', error));
 
@@ -29,6 +33,7 @@ fetch('http://127.0.0.1:5000/api/lotId/'+lots,{
         // Extract data from the API response
         let { status } = data[0];
         
+        
         if(status == null){
           status = "รอการตรวจสอบ"
         }
@@ -41,6 +46,7 @@ fetch('http://127.0.0.1:5000/api/lotId/'+lots,{
     // document.getElementById("btn btn-success").onclick = function(){
         
     // }
+    
     document.addEventListener('DOMContentLoaded', function() {
       const apiUrl = 'http://127.0.0.1:5000/api/lotId/'+lots;
 
@@ -129,16 +135,29 @@ fetch('http://127.0.0.1:5000/api/lotId/'+lots,{
       .then(response => response.json())
       .then(data => {
           if (data.rowcount) {
-              alert('การอนุมัติเสร็จสมบูรณ์');
-              window.location.href = "lot.html";
+              // alert('การอนุมัติเสร็จสมบูรณ์');
+              Swal.fire({
+                icon: "success",
+                title: "การอนุมัติเสร็จสมบูรณ์",
+                text: "Lot: "+lotname+"ถูกเปลี่ยนสถานะเป็นอนุมัติ"
+              }).then(() => {
+                window.open("lot.html", "_self");
+              });
               
           } else {
-              alert('เกิดข้อผิดพลาดในการอนุมัติ');
+            Swal.fire({
+              icon: "error",
+              title: "การอนุมัติผิดพลาด",
+              text: "Lot: "+lotname+"ไม่สามารถเปลี่ยนสถานะเป็นอนุมัติได้"
+            })
           }
       })
       .catch(error => {
           console.error('Error:', error);
-          alert('เกิดข้อผิดพลาดในการเชื่อมต่อกับ API');
+          Swal.fire({
+            icon: "warning",
+            title: "เกิดข้อผิดพลาดในการเชื่อมต่อกับ API"
+          })
       });
     }
 
@@ -164,16 +183,28 @@ fetch('http://127.0.0.1:5000/api/lotId/'+lots,{
       .then(response => response.json())
       .then(data => {
           if (data.rowcount) {
-              alert('การปฏิเสธเสร็จสมบูรณ์');
-              window.location.href = "lot.html";
+            Swal.fire({
+              icon: "success",
+              title: "การปฏิเสธเสร็จสมบูรณ์",
+              text: "Lot: "+lotname+"ถูกเปลี่ยนสถานะเป็นปฏิเสธ"
+            }).then(() => {
+              window.open("lot.html", "_self");
+            });
               
           } else {
-              alert('เกิดข้อผิดพลาดในการอนุมัติ');
+            Swal.fire({
+              icon: "error",
+              title: "การปฏิเสธผิดพลาด",
+              text: "Lot: "+lotname+"ไม่สามารถเปลี่ยนสถานะเป็นปฏิเสธได้"
+            })
           }
       })
       .catch(error => {
           console.error('Error:', error);
-          alert('เกิดข้อผิดพลาดในการเชื่อมต่อกับ API');
+          Swal.fire({
+            icon: "warning",
+            title: "เกิดข้อผิดพลาดในการเชื่อมต่อกับ API"
+          })
       });
     }
 
@@ -198,16 +229,28 @@ fetch('http://127.0.0.1:5000/api/lotId/'+lots,{
       .then(response => response.json())
       .then(data => {
           if (data.rowcount) {
-              alert('กำลังรอตรวจสอบ');
-              window.location.href = "lot.html";
+            Swal.fire({
+              icon: "success",
+              title: "การรอตรวจสอบเสร็จสมบูรณ์",
+              text: "Lot: "+lotname+"ถูกเปลี่ยนสถานะเป็นรอตรวจสอบ"
+            }).then(() => {
+              window.open("lot.html", "_self");
+            });
               
           } else {
-              alert('เกิดข้อผิดพลาดในการรอการตรวจสอบ');
+            Swal.fire({
+              icon: "error",
+              title: "การเปลี่ยนสถานะรอตรวจสอบผิดพลาด",
+              text: "Lot: "+lotname+"ไม่สามารถเปลี่ยนสถานะเป็นรอตรวจสอบได้"
+            })
           }
       })
       .catch(error => {
           console.error('Error:', error);
-          alert('เกิดข้อผิดพลาดในการเชื่อมต่อกับ API');
+          Swal.fire({
+            icon: "warning",
+            title: "เกิดข้อผิดพลาดในการเชื่อมต่อกับ API"
+          })
       });
     }
   

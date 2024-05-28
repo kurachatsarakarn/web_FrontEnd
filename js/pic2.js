@@ -62,9 +62,17 @@ function delete_capture() {
     .then((response) => response.json())
     .then((data) => {
       console.log("Success:", data);
-      // window.localStorage.removeItem("id_lots");
-      // window.localStorage.removeItem("lots");
-      window.close();
+      window.localStorage.removeItem("id_lots");
+      let lot = window.localStorage.getItem("lots");
+      window.localStorage.removeItem("lots");
+      Swal.fire({
+        icon: "success",
+        title: "ยกเลิกรูปภาพสำเร็จ",
+        text: "รูปภาพจะถูกยกเลิกการบันทึกที่ lot: "+lot
+      }).
+      then(() => {
+        window.close();
+      });
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -96,10 +104,18 @@ function save_capture() {
   })
     .then((response) => response.json())
     .then((data) => {
-      // window.localStorage.removeItem("id_lots");
-      // window.localStorage.removeItem("lots");
+      window.localStorage.removeItem("id_lots");
+      let lot = window.localStorage.getItem("lots");
+      window.localStorage.removeItem("lots");
       console.log("Success:", data);
-      window.close();
+      Swal.fire({
+        icon: "success",
+        title: "บันทึกรูปภาพสำเร็จ",
+        text: "รูปภาพจะถูกบันทึกไปยัง lot: "+lot
+      }).
+      then(() => {
+        window.close();
+      });
     })
     .catch((error) => {
       console.error("Error:", error);
