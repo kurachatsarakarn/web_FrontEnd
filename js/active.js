@@ -121,6 +121,10 @@ async function fetchAndPopulateSelect() {
           selectElement.appendChild(option);
         }
       });
+      const id_lots = window.localStorage.getItem('id_lots');
+      if(id_lots){
+        document.getElementById('mySelect').value = id_lots; 
+      }
     } else {
       console.error('รูปแบบข้อมูลไม่ถูกต้อง:', data);
     }
