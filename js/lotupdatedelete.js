@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
           const updateButton = document.createElement('button');
           updateButton.textContent = 'update';
           updateButton.className = 'update-button';
-          updateButton.onclick = () => updateItem(item.id);
+          updateButton.onclick = () => updateItem(item.id,item.name);
           updateCell.appendChild(updateButton);
   
           const deleteButton = document.createElement('button');
@@ -48,16 +48,142 @@ document.addEventListener('DOMContentLoaded', function() {
   
   
     // ฟังก์ชันสำหรับอัพเดทข้อมูล (คุณต้องเพิ่มฟังก์ชันจริง)
-    function updateItem(id) {
-      console.log(`Update item with ID: ${id}`);
-      // เพิ่มโค้ดเพื่อจัดการการอัพเดท
+    // Async function to update item
+    // Async function to update item
+    async function updateItem(id, name) {
+      const { value: formValues } = await Swal.fire({
+        title: 'Update lot',
+        html: `
+          <div class="box-update">
+            <input id="update-id" class="swal2-input" value="${id}" readonly>
+            <input id="update-name" class="swal2-input" value="${name}">
+          </div>
+        `,
+        focusConfirm: false,
+        preConfirm: () => {
+          return [
+            document.getElementById('update-id').value,
+            document.getElementById('update-name').value
+          ];
+        },
+        showCancelButton: true,
+        confirmButtonText: 'บันทึก',
+        cancelButtonText: 'ยกเลิก',
+        allowOutsideClick: false,
+        allowEscapeKey: false
+      });
+      const dataToSend = {
+        name: document.getElementById('update-name').value,
+        id:document.getElementById('update-id').value,
+      };
+    
+      fetch('http://127.0.0.1:5000/api/lots', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          "Authorization": "Bearer "+window.localStorage.getItem("Token")
+        },
+        body: JSON.stringify(dataToSend)
+      })
+
+      if (formValues) {
+        const [updatedId, updatedName] = formValues;
+
+        
+        Swal.fire({
+          title: 'แก้ไขข้อมูลสำเร็จ!',
+          html: `
+            <p>ID: <strong>${updatedId}</strong></p>
+            <p>Name: <strong>${updatedName}</strong></p>
+          `,
+          icon: 'success'
+        }).then(() => {
+          window.location.reload();
+        });
+        
+
+        // Update the table row with the new values
+        const table = document.getElementById('data-table');
+        const rows = table.getElementsByTagName('tr');
+        for (let i = 1; i < rows.length; i++) { // Start from 1 to skip the header row
+          const row = rows[i];
+          const updateButton = row.cells[2].getElementsByTagName('button')[0];
+          if (updateButton && updateButton.onclick.toString().includes(`updateItem(${id})`)) {
+            row.cells[0].textContent = updatedName;
+            break;
+          }
+        }
+      }
     }
+
   
     // ฟังก์ชันสำหรับลบข้อมูล (คุณต้องเพิ่มฟังก์ชันจริง)
+    // Function to delete item
     function deleteItem(id) {
-      console.log(`Delete item with ID: ${id}`);
-      // เพิ่มโค้ดเพื่อจัดการการลบ
+      // Confirm deletion with a popup
+      Swal.fire({
+        title: 'ตรวจสอบข้อมูลให้แน่ใจก่อนลบ',
+        text: 'หากลบข้อมูลจะไม่สามารถคืนค่าได้',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'ตกลง',
+        cancelButtonText: 'ยกเลิก',
+        allowOutsideClick: false,
+        allowEscapeKey: false
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // If user confirms deletion
+          fetch(`http://127.0.0.1:5000/api/lots/${id}`, {
+            method: 'DELETE',
+            headers: {
+              'Authorization': 'Bearer ' + window.localStorage.getItem('Token')
+            }
+          })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            // If deletion is successful
+            Swal.fire({
+              title: 'ข้อมูลถูกลบแล้ว!',
+              text: 'ข้อมูลจะไม่สามารถคืนค่าได้',
+              icon: 'success',
+              showConfirmButton: false,
+              timer: 1500
+            }).then(() => {
+              // Remove the row from the table
+              const table = document.getElementById('data-table');
+              const rows = table.getElementsByTagName('tr');
+              for (let i = 1; i < rows.length; i++) { // Start from 1 to skip the header row
+                const row = rows[i];
+                const deleteButton = row.cells[3].getElementsByTagName('button')[0];
+                if (deleteButton && deleteButton.onclick.toString().includes(`deleteItem(${id})`)) {
+                  table.deleteRow(i);
+                  break;
+                }
+              }
+            }).then(() => {
+              window.location.reload();
+            });
+          })
+          .catch(error => {
+            // If an error occurs during deletion
+            console.error('There was an error!', error);
+            Swal.fire({
+              title: 'Error!',
+              text: 'There was an error deleting your item. Please try again later.',
+              icon: 'error'
+            });
+          });
+        }
+      });
     }
+
   
     // เรียกใช้ฟังก์ชันเพื่อดึงข้อมูลและเพิ่มลงในตาราง
     fetchData();
@@ -68,7 +194,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const lotName = document.getElementById('newlot').value;
   
     if (!lotName) {
-      alert('กรุณาใส่ชื่่อล็อต');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please enter lot name!',
+      });
       return;
     }
   
@@ -80,24 +210,41 @@ document.addEventListener('DOMContentLoaded', function() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        "Authorization": "Bearer "+window.localStorage.getItem("Token")
+        "Authorization": "Bearer " + window.localStorage.getItem("Token")
       },
       body: JSON.stringify(dataToSend)
     })
     .then(response => response.json())
     .then(data => {
       if (data.rowcount > 0) {
-        alert('Lot created successfully!');
+        Swal.fire({
+          icon: 'success',
+          title: 'ล็อตถูกสร้าง',
+          showConfirmButton: false,
+          timer: 1500
+        }).then(() => {
+          window.location.reload();
+        });
         document.getElementById('newlot').value = ''; // Clear the input field
       } else {
-        alert('Failed to create lot.');
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Failed to create lot.',
+        });
       }
     })
     .catch(error => {
       console.error('Error:', error);
-      alert('An error occurred while creating the lot.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'An error occurred while creating the lot.',
+      });
     });
   }
+  
+  
   
 
   
