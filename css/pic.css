@@ -4,36 +4,6 @@ body{
     background-color: rgb(255, 255, 255);
 }
 
-.header{
-    background-color: #0064c2;
-}
-
-.nav-link:hover {
-    background-color: #ffffff; /* เปลี่ยนสีข้อความเมื่อ hover */
-    color:#0064c2
-  }
-  
-
-.nav{
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.nav a{
-    color: white;
-}
-
-
-.icon{
-    width: 60px;
-    height: 60px;
-    padding-left: 5px;
-}
-
-.namecom{
-    padding-left: 10px;
-    color: white;
-}
 
 #sum{
     padding-top: 20px;

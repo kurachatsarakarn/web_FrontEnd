@@ -1,13 +1,17 @@
 <div class="header">
   <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
     <script src="/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="/css/header.css">
     <a href="/" onclick="window.location.href = './index.html'; return false;"
       class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
       <img src="KT-Food.ico" class="icon" alt="icon" />
       <span class="namecom fs-4">บริษัท กรุงไทยอาหาร จำกัด (มหาชน)</span>
     </a>
-    <p><span id="header-use"></span></p>
+    
     <ul class="nav nav-pills">
+      <li class="nav-item">
+        <a class="nav-link">รหัสผู้ใช้ : <span id="header-use" class="user"></span></a></li>
+        <li class="nav-item">
       <li class="nav-item">
         <a href="/html/index.html" class="nav-link">หน้าหลัก</a>
       </li>
