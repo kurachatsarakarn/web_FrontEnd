@@ -39,42 +39,54 @@ function updateuser(id_user) {
     Role: document.getElementById("Role").value,
     id: id_user,
   };
-  fetch("http://127.0.0.1:5000/api/user", {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + window.localStorage.getItem("Token"),
-    },
-    body: JSON.stringify(dataToSend),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.rowcount > 0) {
+  if(document.getElementById('username').value === "" || document.getElementById('password').value === "" ||
+      document.getElementById('username').value === " " || document.getElementById('password').value === " "){
+        
         Swal.fire({
-          icon: 'success',
-          title: 'การแก้ไขสำเร็จ!',
-          text: 'คุณได้แก้ไขเรียบร้อย!',
-          confirmButtonText: 'OK'
+          icon: "error",
+          title: "กรุณากรอกข้อมูล",
+          text: "กรุณากรอกข้อมูลให้ครบถ้วน"
         }).then(() => {
-          window.open("userall.html", "_self");
-        });
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'ถูกปฏิเสธ!',
-          text: 'คุณยังไม่ได้แก้ไขผู้ใช้.',
-          confirmButtonText: 'OK'
-        });
+          window.open('userall.html', '_self');
+       });
       }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      Swal.fire({
-        icon: 'error',
-        title: 'Error!',
-        text: 'An error occurred while updating the user.',
-        confirmButtonText: 'OK'
-      });
-    });
+      else{fetch("http://127.0.0.1:5000/api/user", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + window.localStorage.getItem("Token"),
+        },
+        body: JSON.stringify(dataToSend),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.rowcount > 0) {
+            Swal.fire({
+              icon: 'success',
+              title: 'การแก้ไขสำเร็จ!',
+              text: 'คุณได้แก้ไขเรียบร้อย!',
+              confirmButtonText: 'OK'
+            }).then(() => {
+              window.open("userall.html", "_self");
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'ถูกปฏิเสธ!',
+              text: 'คุณยังไม่ได้แก้ไขผู้ใช้.',
+              confirmButtonText: 'OK'
+            });
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'An error occurred while updating the user.',
+            confirmButtonText: 'OK'
+          });
+        });}
+  
 }
 
