@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 function StatusSearch() {
-  const name = document.getElementById('searchInput').value
+  const name = document.getElementById('searchInputStatus').value
 
   const apiUrl = "http://127.0.0.1:5000/api/status/search";
 
