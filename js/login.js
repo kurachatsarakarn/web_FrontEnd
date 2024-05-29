@@ -49,6 +49,5 @@ function login() {
         title: "Login fail",
       })
       console.error("Error:", error);
-      alert("Login failed: " + error.message);
     });
 }

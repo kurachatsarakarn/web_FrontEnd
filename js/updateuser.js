@@ -31,6 +31,7 @@ function getuser_id(id) {
     });
 }
 
+
 function updateuser(id_user) {
   const dataToSend = {
     name: document.getElementById("username").value,
@@ -49,14 +50,31 @@ function updateuser(id_user) {
     .then((response) => response.json())
     .then((data) => {
       if (data.rowcount > 0) {
-        alert("User updated successfully!");
-        window.open("userall.html", "_self");
+        Swal.fire({
+          icon: 'success',
+          title: 'การแก้ไขสำเร็จ!',
+          text: 'คุณได้แก้ไขเรียบร้อย!',
+          confirmButtonText: 'OK'
+        }).then(() => {
+          window.open("userall.html", "_self");
+        });
       } else {
-        alert("Failed to update user.");
+        Swal.fire({
+          icon: 'error',
+          title: 'ถูกปฏิเสธ!',
+          text: 'คุณยังไม่ได้แก้ไขผู้ใช้.',
+          confirmButtonText: 'OK'
+        });
       }
     })
     .catch((error) => {
       console.error("Error:", error);
-      alert("An error occurred while updating the user.");
+      Swal.fire({
+        icon: 'error',
+        title: 'Error!',
+        text: 'An error occurred while updating the user.',
+        confirmButtonText: 'OK'
+      });
     });
 }
+

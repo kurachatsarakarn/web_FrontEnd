@@ -23,21 +23,76 @@
     <script src="/js/auth.js"></script>
     <script src="/js/updateuser.js"></script>
     <script src="/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    
+    <style>
+      .container {
+          background-color: white;
+          padding: 20px 40px;
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          max-width: 400px;
+          width: 100%;
+          margin-top: 150px;
+      }
+      .container p {
+          margin: 10px 0;
+          font-size: 14px;
+          font-weight: bold;
+          color: #333;
+      }
+      .container input[type="text"],
+      .container select {
+          width: 100%;
+          padding: 10px;
+          margin: 10px 0 20px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-sizing: border-box;
+      }
+      .container button {
+          width: 100%;
+          padding: 10px;
+          border: none;
+          border-radius: 5px;
+          color: white;
+          font-size: 16px;
+          cursor: pointer;
+      }
+      #updateuser {
+          background-color: #007bff;
+          margin-bottom: 10px;
+      }
+      #createuser:hover {
+          background-color: #0056b3;
+      }
+      #back {
+          background-color: #6c757d;
+      }
+      #back:hover {
+          background-color: #5a6268;
+      }
+      .form-action {
+          display: flex;
+          flex-direction: column;
+      }
+  </style>
   </head>
   <body>
     <div id="header"></div>
-    <P>username</P>
-    <input type="text" id="username">
-    <P>password</P>
-    <input type="text" id="password">
-    <P>Role</P>
-    <select id="Role">
-        <option value="user">user</option>
-        <option value="admin">admin</option>
-    </select>
-    <button id="updateuser">save</button>
-    <form action="userall.html">
-      <button id="back">back</button>
-  </form>
+    <div class="container">
+        <P>username</P>
+        <input type="text" id="username">
+        <P>password</P>
+        <input type="text" id="password">
+        <P>Role</P>
+        <select id="Role">
+            <option value="user">user</option>
+            <option value="admin">admin</option>
+        </select>
+        <button id="updateuser">บันทึก</button>
+        <form action="userall.html">
+            <button id="back">กลับ</button>
+        </form>
+  </div>
   </body>
 </html>
