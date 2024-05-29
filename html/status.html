@@ -22,20 +22,21 @@
     <script src="/js/header.js"></script>
     <script src="/js/status.js"></script>
     <script src="/node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
-    <link rel="stylesheet" href="/css/lots.css">
+    <!-- <link rel="stylesheet" href="/css/lots.css"> -->
   </head>
   <body>
 
     <div id="header"></div>
 
-    <div class="input-group mb-5">
-      <input id="searchInput" type="search" class="form-control" placeholder="Search..." aria-label="Search">
+    <div class="input-group">
+      <input id="searchInputStatus" type="search" class="form-control" placeholder="Search..." aria-label="Search">
       <div class="input-group-append">
-        <button id="searchButton" class="searchButton" type="button" onclick="StatusSearch()">
+        <button id="searchButtonStatus" class="searchButton" type="button" onclick="StatusSearch()">
           <i class="fas fa-search"></i>
         </button>
       </div>
     </div>
+
     <div class="text-box-create">
       <table id="data-table">
         <tr>
