@@ -58,13 +58,13 @@ body{
     background-color: transparent;
     background-image: none;
     border-color: #007bff;
-  }
+}
   
-  .searchButton:hover {
+.searchButton:hover {
     color: #fff;
     background-color: #007bff;
     border-color: #007bff;
-  }  
+}  
 
 
 
@@ -87,6 +87,12 @@ body{
 
 
 
-  
+
+.input-groupLot {
+    display: flex;
+    align-items: center;
+    width: 500px; /* ให้เต็มความกว้างของ container */
+    margin-left: 800px;
+  }
 
   
