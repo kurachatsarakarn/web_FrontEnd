@@ -62,9 +62,10 @@ function delete_capture() {
     .then((response) => response.json())
     .then((data) => {
       console.log("Success:", data);
-      window.localStorage.removeItem("id_lots");
       let lot = window.localStorage.getItem("lots");
-      window.localStorage.removeItem("lots");
+      // window.localStorage.removeItem("id_lots");
+      
+      // window.localStorage.removeItem("lots");
       Swal.fire({
         icon: "success",
         title: "ยกเลิกรูปภาพสำเร็จ",
@@ -104,9 +105,10 @@ function save_capture() {
   })
     .then((response) => response.json())
     .then((data) => {
-      window.localStorage.removeItem("id_lots");
       let lot = window.localStorage.getItem("lots");
-      window.localStorage.removeItem("lots");
+      // window.localStorage.removeItem("id_lots");
+
+      // window.localStorage.removeItem("lots");
       console.log("Success:", data);
       Swal.fire({
         icon: "success",
