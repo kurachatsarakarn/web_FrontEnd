@@ -7,10 +7,19 @@ document.addEventListener('DOMContentLoaded', function() {
         password: document.getElementById('password').value,
         Role: document.getElementById('Role').value
       };
-      if(document.getElementById('username').value == "" || document.getElementById('password').value == ""){
-        window.open('userall.html', '_self');
+      if(document.getElementById('username').value === "" || document.getElementById('password').value === "" ||
+      document.getElementById('username').value === " " || document.getElementById('password').value === " "){
+        
+        Swal.fire({
+          icon: "error",
+          title: "กรุณากรอกข้อมูล",
+          text: "กรุณากรอกข้อมูลให้ครบถ้วน"
+        }).then(() => {
+          window.open('userall.html', '_self');
+       });
       }
-      fetch('http://127.0.0.1:5000/api/user', {
+      else{
+        fetch('http://127.0.0.1:5000/api/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -26,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title: "สร้างผู้ใช้สำเร็จ",
             text: "Id: "+document.getElementById('username').value+"ถูกสร้างแล้ว"
           }).then(() => {
-            window.open('userall.html', '_self');
+             window.open('userall.html', '_self');
           });
         } else {
           Swal.fire({
@@ -44,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
         })
       });
     };
-  } else {
-    console.error('Element with id "createuser" not found');
+    } 
   }
 });
