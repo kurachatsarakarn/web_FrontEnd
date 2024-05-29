@@ -42,18 +42,70 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ฟังก์ชันสำหรับอัพเดทข้อมูล (คุณต้องเพิ่มฟังก์ชันจริง)
-  function updateItem(id) {
-    console.log(`Update item with ID: ${id}`);
-    // เพิ่มโค้ดเพื่อจัดการการอัพเดท
+  // เรียกใช้ฟังก์ชันเพื่อดึงข้อมูลและเพิ่มลงในตาราง
+  fetchData();
+});
+
+
+
+function StatusSearch() {
+  const name = document.getElementById('searchInput').value
+
+  const apiUrl = "http://127.0.0.1:5000/api/status/search";
+
+  async function fetchData() {
+    console.log(name);
+    const datasend = {
+      name: name,
+    }
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: "Bearer " + window.localStorage.getItem("Token"),
+        },
+        body: JSON.stringify(datasend),
+      });
+      const data = await response.json();
+      if (Array.isArray(data.myresult)) {
+        // ตรวจสอบว่าข้อมูลที่ได้รับเป็นอาร์เรย์หรือไม่
+        populateTable(data.myresult);
+      } else {
+        console.error("Error: Data is not an array");
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   }
 
-  // ฟังก์ชันสำหรับลบข้อมูล (คุณต้องเพิ่มฟังก์ชันจริง)
-  function deleteItem(id) {
-    console.log(`Delete item with ID: ${id}`);
-    // เพิ่มโค้ดเพื่อจัดการการลบ
+  // ฟังก์ชันสำหรับเพิ่มข้อมูลลงในตาราง
+  function populateTable(data) {
+    console.log(data);
+    document.getElementById("data-table").innerHTML = `<tr>
+    <th>name</th>
+    <th>lots</th>
+    <th>status</th>
+    <th>date</th>
+  </tr>`;
+    const table = document.getElementById("data-table");
+    data.forEach((item) => {
+      // แก้ไขจาก data เป็น data.myresult
+      
+      const row = table.insertRow();
+      const nameCell = row.insertCell(0);
+      const lotsCell = row.insertCell(1);
+      const statusCell = row.insertCell(2);
+      const dateCell = row.insertCell(3);
+   
+
+      nameCell.textContent = item.name;
+      lotsCell.textContent = item.lots;
+      dateCell.textContent = new Date(item.date).toLocaleDateString();
+      statusCell.textContent = item.status;
+    });
   }
 
   // เรียกใช้ฟังก์ชันเพื่อดึงข้อมูลและเพิ่มลงในตาราง
   fetchData();
-});
+}
