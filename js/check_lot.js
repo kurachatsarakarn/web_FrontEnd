@@ -172,4 +172,7 @@ async function fetchData() {
       console.error('Error:', error);
       alert('An error occurred while creating the lot.');
     });
+  }function goBack() {
+    window.history.back();
   }
+  

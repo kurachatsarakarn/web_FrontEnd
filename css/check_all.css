@@ -7,7 +7,7 @@ body{
 
 
 .text-dep{
-    width: 650px;   
+    width: 500px;   
     height: 80px;
     font-size: 30px;
     text-align: center;
@@ -15,8 +15,27 @@ body{
     border-radius: 10px;
     color: white;
     background-color: #0064c2;
-    margin-left: 45px;
+    margin-left: 33px;
 }
+
+#backButton {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    background-color: #0064c2; /* สีพื้นหลัง */
+    color: white; /* สีข้อความ */
+    border: none; /* ไม่มีขอบ */
+    padding: 10px 20px; /* ระยะห่างภายในปุ่ม */
+    border-radius: 10px; /* มุมโค้งของปุ่ม */
+    cursor: pointer; /* เปลี่ยนเคอร์เซอร์เมื่อเลื่อนมาที่ปุ่ม */
+    left: 330px;
+    bottom: 76px;
+}
+
+#backButton:hover {
+    background-color: #0056b3; /* สีพื้นหลังเมื่อเอาเมาส์ชี้ */
+  }
+
 
 .graph{
     width: 650px;
@@ -91,6 +110,7 @@ body{
     width: 700px;
     margin-top: -600px;
     margin-left: 800px;
+
 }
 
 .graph{
