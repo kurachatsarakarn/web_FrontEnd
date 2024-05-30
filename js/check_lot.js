@@ -141,7 +141,7 @@ async function fetchData() {
                 if (label) {
                   label += ": ";
                 }
-                label += context.raw;
+                label += context.raw+"%";
                 return label;
               },
             },

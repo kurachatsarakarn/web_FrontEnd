@@ -90,7 +90,7 @@
                 "เมล็ดเสียปกติ: "+parseInt(apiData.Countbroken), 
                 "เมล็ดเสียเต็มเมล็ด: "+parseInt(apiData.Countfullbrokenseeds)];
                 const values = [
-                  parseFloat(apiData.BreakClean),
+                  parseFloat(apiData.BreakClean)  ,
                   parseFloat(apiData.CompleteSeeds),
                   parseFloat(apiData.Dust),
                   parseFloat(apiData.MoldSpores),
@@ -148,7 +148,7 @@
                           if (label) {
                             label += ": ";
                           }
-                          label += context.raw;
+                          label += context.raw+"%";
                           return label;
                         },
                       },
