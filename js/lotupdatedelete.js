@@ -180,6 +180,50 @@ document.addEventListener('DOMContentLoaded', function() {
               icon: 'error'
             });
           });
+          fetch(`http://127.0.0.1:5000/api/lotId/${id}`, {
+                  method: 'GET',
+                  headers: {
+                    'Authorization': 'Bearer ' + window.localStorage.getItem('Token')
+                  }
+                })
+                  .then(response => {
+                    if (!response.ok) {
+                      throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                  })
+                  .then(data => {
+                    const paths = data.map(item => item.path);
+
+                    const deleteRequests = paths.map(path => {
+                      const dataToSend = {
+                        filename: path
+                      };
+
+                      return fetch(`http://127.0.0.1:5000/delete_capture`, {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json',
+                          'Authorization': 'Bearer ' + window.localStorage.getItem('Token')
+                        },
+                        body: JSON.stringify(dataToSend)
+                      })
+                      .then(response => {
+                        if (!response.ok) {
+                          throw new Error('Failed to delete: ' + path);
+                        }
+                        return response.json();
+                      });
+                    });
+
+                    return Promise.all(deleteRequests);
+                  })
+                  .then(results => {
+                    console.log('All delete requests were successful:', results);
+                  })
+                  .catch(error => {
+                    console.error('Error:', error);
+                  });
         }
       });
     }
