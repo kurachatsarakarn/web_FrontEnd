@@ -15,12 +15,12 @@ document.getElementById("BreakClean").innerHTML = "เมล็ดแตกส�
 document.getElementById("CompleteSeeds").innerHTML = "เมล็ดสมบูรณ์: " + num[1];
 document.getElementById("Dust").innerHTML = "ฝุ่นซังแตกหยิม: " + num[2];
 document.getElementById("MoldSpores").innerHTML =
-  "เมล็ดเป็นราแบบมีสปอร์รา: " + num[3];
-document.getElementById("broken").innerHTML = "เมล็ดเสียปกติ: " + num[4];
+  "เมล็ดเป็นราแบบมีสปอร์รา: " + 0;
+document.getElementById("broken").innerHTML = "เมล็ดเสียปกติ: " + num[3];
 document.getElementById("fullbrokenseeds").innerHTML =
-  "เมล็ดเสียเต็มเมล็ด: " + num[5];
-document.getElementById("percent").innerHTML = "percent : " + percent;
-for (let i = 0; i <= 5; i++) {
+  "เมล็ดเสียเต็มเมล็ด: " + num[4];
+document.getElementById("percent").innerHTML = "percent : " + percent+"%";
+for (let i = 0; i <= 4; i++) {
   sum += num[i];
 
   document.getElementById("lotValue").innerHTML = lot;
@@ -90,9 +90,9 @@ function save_capture() {
     BreakClean: num[0],
     CompleteSeeds: num[1],
     Dust: num[2],
-    MoldSpores: num[3],
-    broken: num[4],
-    fullbrokenseeds: num[5],
+    MoldSpores: 0,
+    broken: num[3],
+    fullbrokenseeds: num[4],
     path: file,
   };
   fetch("http://127.0.0.1:5000/api/products", {

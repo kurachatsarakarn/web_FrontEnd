@@ -10,7 +10,7 @@ window.onload = function () {
     .then((stream) => {
       video.srcObject = stream;
       video.play();
-      setInterval(sendFrame,300);
+      setInterval(sendFrame,200);
       // requestAnimationFrame(sendFrame); // ใช้ requestAnimationFrame แทน setInterval
     })
     .catch((err) => {
@@ -32,12 +32,12 @@ window.onload = function () {
       document.getElementById("Dust").textContent =
         "ฝุ่นซังแตกหยิม: " + data.num[2];
       document.getElementById("MoldSpores").textContent =
-        "เมล็ดเป็นราแบบมีสปอร์รา: " + data.num[3];
+        "เมล็ดเป็นราแบบมีสปอร์รา: " + 0;
       document.getElementById("broken").textContent =
-        "เมล็ดเสียปกติ: " + data.num[4];
+        "เมล็ดเสียปกติ: " + data.num[3];
       document.getElementById("fullbrokenseeds").textContent =
-        "เมล็ดเสียเต็มเมล็ด: " + data.num[5];
-      document.getElementById("empty").textContent = "empty: " + data.num[6];
+        "เมล็ดเสียเต็มเมล็ด: " + data.num[4];
+      document.getElementById("empty").textContent = "empty: "  ;
       document.getElementById("percent").textContent = "percent : " + data.percent + "%"
       var sum = data.num.reduce((total, current) => total + current, 0);
       document.getElementById("sum").textContent = "sum: " + sum;
