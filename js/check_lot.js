@@ -167,10 +167,19 @@ async function fetchData() {
     })
     .then(response => response.json())
     .then(data => {
-      if (data.file > 0) {
-        alert('Delete product successfully!');
+      console.log(data.file)
+      if (data.file) {
+        Swal.fire({
+          icon: "success",
+          title: "การลบproduct:"+id,
+          text: "product: "+id+"ถูกลบเสร็จสมบูรณ์"
+        })
       } else {
-        alert('Failed to Delete Product.');
+        Swal.fire({
+          icon: "error",
+          title: "การลบproduct:"+id,
+          text: "product: "+id+"ถูกลบไม่เสร็จสมบูรณ์"
+        })
       }
     })
     .catch(error => {
