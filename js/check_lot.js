@@ -76,12 +76,12 @@ async function fetchData() {
 
       // Parse the received data
       const apiData = data[0];
-      const labels = ["เมล็ดแตกสะอาด: "+parseInt(apiData.CountBreakClean), 
-      "เมล็ดสมบูรณ์: "+parseInt(apiData.CountCompleteSeeds), 
-      "ฝุ่นซังแตกหยิม: "+parseInt(apiData.CountDust), 
-      "เมล็ดเป็นราแบบมีสปอร์รา: "+parseInt(apiData.CountMoldSpores), 
-      "เมล็ดเสียปกติ: "+parseInt(apiData.Countbroken), 
-      "เมล็ดเสียเต็มเมล็ด: "+parseInt(apiData.Countfullbrokenseeds)];
+      const labels = ["A: "+parseInt(apiData.CountBreakClean), 
+      "B: "+parseInt(apiData.CountCompleteSeeds), 
+      "C: "+parseInt(apiData.CountDust), 
+      "D: "+parseInt(apiData.CountMoldSpores), 
+      "E: "+parseInt(apiData.Countbroken), 
+      "F: "+parseInt(apiData.Countfullbrokenseeds)];
       const values = [
         parseFloat(apiData.BreakClean),
         parseFloat(apiData.CompleteSeeds),

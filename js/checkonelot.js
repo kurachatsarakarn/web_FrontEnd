@@ -112,7 +112,8 @@ fetch('http://127.0.0.1:5000/api/lotId/'+lots,{
       fetchData();
     });
 
-
+    let datenow = new Date().toJSON().slice(0, 10);
+    console.log("test date: "+datenow)
     //////////// approve button
     function approve() {
       console.log("fsfsdf")
@@ -120,7 +121,7 @@ fetch('http://127.0.0.1:5000/api/lotId/'+lots,{
       const dataToSend = {
           idlot: lots,
           status: "อนุมัติแล้ว",
-          date:"2024-05-05"
+          date:datenow
       };
       console.log(lots)
   
@@ -168,7 +169,7 @@ fetch('http://127.0.0.1:5000/api/lotId/'+lots,{
       const dataToSend = {
           idlot: lots,
           status: "ถูกปฏิเสธ",
-          date:"2024-05-05"
+          date:datenow
       };
       console.log(lots)
   
@@ -214,7 +215,7 @@ fetch('http://127.0.0.1:5000/api/lotId/'+lots,{
       const dataToSend = {
           idlot: lots,
           status: "รอการตรวจสอบ",
-          date:"2024-05-05"
+          date:datenow
       };
       console.log(lots)
   

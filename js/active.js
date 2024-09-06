@@ -26,17 +26,17 @@ window.onload = function () {
         "data:image/jpeg;base64," +
         btoa(String.fromCharCode.apply(null, new Uint8Array(data.frame)));
       document.getElementById("BreakClean").textContent =
-        "เมล็ดแตกสะอาด: " + data.num[0];
+        "A: " + data.num[0];
       document.getElementById("CompleteSeeds").textContent =
-        "เมล็ดสมบูรณ์: " + data.num[1];
+        "B: " + data.num[1];
       document.getElementById("Dust").textContent =
-        "ฝุ่นซังแตกหยิม: " + data.num[2];
+        "C: " + data.num[2];
       document.getElementById("MoldSpores").textContent =
-        "เมล็ดเป็นราแบบมีสปอร์รา: " + 0;
+        "D: " + 0;
       document.getElementById("broken").textContent =
-        "เมล็ดเสียปกติ: " + data.num[3];
+        "E: " + data.num[3];
       document.getElementById("fullbrokenseeds").textContent =
-        "เมล็ดเสียเต็มเมล็ด: " + data.num[4];
+        "F: " + data.num[4];
       document.getElementById("empty").textContent = "empty: "  ;
       document.getElementById("percent").textContent = "percent : " + data.percent + "%"
       var sum = data.num.reduce((total, current) => total + current, 0);

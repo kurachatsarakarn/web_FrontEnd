@@ -11,14 +11,14 @@ num = JSON.parse(numstr);
 console.log(num[1]);
 console.log("sss");
 
-document.getElementById("BreakClean").innerHTML = "เมล็ดแตกสะอาด: " + num[0];
-document.getElementById("CompleteSeeds").innerHTML = "เมล็ดสมบูรณ์: " + num[1];
-document.getElementById("Dust").innerHTML = "ฝุ่นซังแตกหยิม: " + num[2];
+document.getElementById("BreakClean").innerHTML = "A: " + num[0];
+document.getElementById("CompleteSeeds").innerHTML = "B: " + num[1];
+document.getElementById("Dust").innerHTML = "C: " + num[2];
 document.getElementById("MoldSpores").innerHTML =
-  "เมล็ดเป็นราแบบมีสปอร์รา: " + 0;
-document.getElementById("broken").innerHTML = "เมล็ดเสียปกติ: " + num[3];
+  "D: " + 0;
+document.getElementById("broken").innerHTML = "E: " + num[3];
 document.getElementById("fullbrokenseeds").innerHTML =
-  "เมล็ดเสียเต็มเมล็ด: " + num[4];
+  "F: " + num[4];
 document.getElementById("percent").innerHTML = "percent : " + percent+"%";
 for (let i = 0; i <= 4; i++) {
   sum += num[i];
